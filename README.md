@@ -1,6 +1,44 @@
 # explore-kotlin
 
+## Adding kotest to the Project
+
+```
+plugins {
+    id 'org.jetbrains.kotlin.jvm' version '1.3.41'
+    id("io.kotest") version "0.2.6"
+
+}
+
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutinesVersion")
+
+
+testImplementation ("io.kotest:kotest-runner-junit5:${kotestVersion}")
+testImplementation("io.kotest:kotest-assertions-core-jvm:$kotestVersion")
+testImplementation("io.kotest:kotest-framework-engine-jvm:$kotestVersion")
+
+test {
+    useJUnitPlatform()
+}
+
+```
+
 ## Higher Order Functions
+
+-   A Higher Order Function is a type of Function which has two meanings:
+    -   Your own function that takes lambda as arguments
+    -   Return the function as a return type
+    
+### Function types
+-   The Function Type Syntax is:
+
+```
+( x ,y )   ->    Unit
+[parameters] [return type]
+```
+```
+val sum = { x: Int, y: Int -> x + y }
+val action = { println(42) }
+```    
 
 ### Passing Function as a argument
 

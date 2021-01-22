@@ -3,8 +3,6 @@ package com.explorekotlin.arrays
 import java.util.Arrays.asList
 import java.util.stream.Collectors
 
-fun hello(vararg authorizationGroups : String){}
-
 fun main() {
 
     val asc = Array(5) { i -> (i * i).toString() }

@@ -1,7 +1,13 @@
 package com.explorekotlin.higher_order_functions
 
-class HigherOrderFunctionExample {
-
+fun String.filter(predicate : (Char) -> Boolean): String {
+    val sb = StringBuilder()
+    println("String  is $this");
+    for (index in 0 until length){
+        val element = get(index)
+        if(predicate(element)) sb.append(element)
+    }
+    return sb.toString()
 
 }
 
@@ -16,5 +22,9 @@ fun main() {
 
     println(operation(1, 2, ::sum))
 
-    println(operation(1, 2) { x, y -> x + y })
+    println("Addition : ${operation(1, 2) { x, y -> x + y }}")
+
+    println("Multiplication : ${operation(1, 2) { x, y -> x * y }}")
+
+    println("abc1".filter { (it in 'a'..'z')   })
 }
