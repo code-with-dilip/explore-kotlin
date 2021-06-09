@@ -15,6 +15,9 @@ fun operation(x : Int, y :Int , op : (Int, Int)-> Int): Int {
     return op(x, y)
 }
 
+
+fun str() : String? = null
+
 fun sum(x: Int,y: Int) = x +y
 
 
@@ -22,9 +25,20 @@ fun main() {
 
     println(operation(1, 2, ::sum))
 
-    println("Addition : ${operation(1, 2) { x, y -> x + y }}")
+    println("Result is : ${operation(1, 2) {x,y -> x-y} }")
 
-    println("Multiplication : ${operation(1, 2) { x, y -> x * y }}")
+    for (i in 1..5) {
+        println("i is $i")
+    }
 
-    println("abc1".filter { (it in 'a'..'z')   })
+    try {
+        str()!!
+    }catch (ex: Exception){
+        println("ex : $ex")
+    }
+
+
+    println("Status is ${"inactive".contains("active")}")
+    println("Status is ${"LES_INACTIVE".toLowerCase().contains("active")}")
+
 }

@@ -69,3 +69,14 @@ fun sum(x: Int,y: Int) = x +y
 
 ```
 
+### Calling Functions passed as arguments
+
+-   Use the function argument and followed by that add the paranthesis
+    -   Add the necessary arguments to it
+    
+```
+fun operation(x : Int, y :Int , op : (Int, Int)-> Int): Int {
+    return op(x, y)
+}
+
+```
