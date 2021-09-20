@@ -22,6 +22,22 @@ test {
 
 ```
 
+##  Scope Functions
+
+- Scope Functions are fundamentally there to make your code more concise and readable
+- The object on which you are applying these scope functions are called Context Objects
+- There are fundamentally five of them
+  - let
+    - returns the lambda result
+  - apply
+    - returns the context object
+  - also
+    - returns the context object
+  - with
+    - returns the lambda result 
+  - run
+    - returns the lambda result 
+
 ## Higher Order Functions
 
 -   A Higher Order Function is a type of Function which has two meanings:
