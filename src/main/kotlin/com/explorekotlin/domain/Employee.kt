@@ -1,8 +1,7 @@
 package com.explorekotlin.domain
 
-data class Employee(open val id: Int?, open val name:  String,open val age: Int)
+data class Employee( val id: Int?, val name:  String, val age: Int)
 
-class Person(override val id: Int?, override val name: String, override val age: Int) : Employee(id,name,age )
 
 fun main() {
 
