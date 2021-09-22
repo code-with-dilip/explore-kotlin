@@ -94,5 +94,39 @@ fun sum(x: Int,y: Int) = x +y
 fun operation(x : Int, y :Int , op : (Int, Int)-> Int): Int {
     return op(x, y)
 }
-
 ```
+
+##  Inline Functions
+
+- inline is a keyword which takes care of inlining the function in to the calling code itself
+
+### Working Example
+
+```kotlin
+
+fun operation(op: () -> Unit) {
+    println("Before Operation")
+    op()
+    println("after Operation")
+}
+
+inline fun inlineOperation(op: () -> Unit) {
+    println("Before inlineOperation")
+    op()
+    println("after inlineOperation")
+}
+
+
+fun main() {
+    operation { println("I am the operation") }
+    inlineOperation { println("I am the inoperation") }
+}
+```
+
+- In the above **inlineOperation** call actually the lamda thats passed in actually embeds the code in to the **main** function
+  - You can check the **bytecode** -> Tools -> Kotlin -> Show Kotlin ByteCode
+
+### How does this alter the method Stack Trace
+
+- It does display a line that does not even exist because inline function inject the code in to the calling function actually
+  - But when the exception is printed in the console it does give you the option to navigate in to the lamda body
