@@ -36,7 +36,11 @@ test {
   - with
     - returns the lambda result 
   - run
-    - returns the lambda result 
+    - returns the lambda result
+
+### apply
+
+-   This function is more or less a side effect, and it does not change the original object      
 
 ## Higher Order Functions
 

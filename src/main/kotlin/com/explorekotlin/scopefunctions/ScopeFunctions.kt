@@ -9,9 +9,9 @@ fun writeToLog(message: String) {
     println("INFO: $message")
 }
 
-fun also(): Int {
-    return Random.nextInt(100).also {
-        writeToLog("getRandomInt() generated value $it")
+fun also(name : String?=null): Int {
+    return Random.nextInt(100).also { value ->
+        writeToLog("getRandomInt() generated value $value and the name is")
     }
 }
 
@@ -19,6 +19,6 @@ fun main() {
 
 
 
-    val i = also()
+    val i = also("Dilip")
     println("Also result : $i")
 }
