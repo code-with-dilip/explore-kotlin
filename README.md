@@ -38,7 +38,7 @@ test {
   - run
     - returns the lambda result
 
-### apply
+### also and apply
 
 -   This function is more or less a side effect, and it does not change the original object      
 
