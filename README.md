@@ -22,7 +22,122 @@ test {
 
 ```
 
-##  Scope Functions
+## Basics of Kotlin
+
+- Kotlin is a language that targets the **JVM** and **JavaScript**
+- Semi Colons are optional in Kotlin
+- Multiple classes per file is allowed
+
+### val and var
+
+- var
+  - This allows you to create mutable variables in kotlin
+
+```yaml
+    var age: Int
+    var name = "Dilip"
+```
+
+- val
+    - This allows you to create immutable variables in kotlin
+
+```yaml
+    val city = "Minneapolis"
+//    city = "Detroit" // this is not allowed
+
+```
+
+- Kotlin is not an immutable language by default
+  - But the recommendation is to use immutable varibles whenever possible
+  - As we all know mutation is the root of all evil
+
+
+### Working with Basic Types in Kotlin
+
+- In kotlin everything is a type
+  - Int
+  - Double
+  - Long
+- This is different from Java. Because java has primitive types
+
+#### Type conversion need to be explicit
+
+```kotlin
+    val doorNo = 1500 // This always maps to integer by default
+     
+```
+- You have to be explicit about the type you would like to convert
+
+```kotlin
+val doorNoLong : Long = doorNo.toLong() 
+```
+#### String and Char
+
+- Single quotes in Kotlin corresponds to Character
+
+```kotlin
+  val char = 'A'
+```
+
+- Double quotes in Kotlin corresponds to String
+
+```kotlin
+  val str = "ABC"
+```
+
+####    Escape Characters in Kotlin
+
+- They can be done using backslash
+```kotlin
+   val escChar = "ABC \n DEF"
+
+```
+
+####  MultiLines in Kotlin
+
+- MultiLines in Kotlin can be done using **three** quotes
+
+```kotlin
+    val multiLine = "ABC\n" +
+            "DEF\n" +
+            "GHI\n"
+
+    val multiLine1 =
+"""
+ABC
+DEF
+GHI
+"""
+
+```
+
+####  String Interpolation
+
+- This can be applied using the **$** symbol
+
+```kotlin
+    val message = "My name is $name"
+```
+
+- Function invocation in String Interpolation
+
+```kotlin
+val message1 = "My name is $name and the name length is ${name.length}"
+```
+
+### Type Inference in Kotlin
+
+- Kotlin can automatically determine the types based on the values assigned to the variable
+  - It helps to cut down the boiler plate code where you don't need to explicitly call out the type the variable is going to hold 
+- 
+```yaml
+var name = "Dilip"
+```
+
+
+
+## Functions
+###  Scope Functions
 
 - Scope Functions are fundamentally there to make your code more concise and readable
 - The object on which you are applying these scope functions are called Context Objects
