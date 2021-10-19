@@ -134,7 +134,127 @@ val message1 = "My name is $name and the name length is ${name.length}"
 var name = "Dilip"
 ```
 
+### Loops , Ranges & Labels
 
+####  Ranges
+
+- Forward range can be created using the **..**
+
+```kotlin
+    val range = 1..100
+    for (i in range){
+        println(i)
+    }
+
+```
+
+- Reverse range can be created using the **downTo** operator
+
+```kotlin
+val reverseRange = 100 downTo 1
+    for (i in reverseRange){
+        println("Reverse range is : $i")
+    }
+```
+
+- You can skip values using **step** keyword 
+
+```kotlin
+for (i in reverseRange step 10){
+println("Reverse range is : $i")
+}
+```
+
+#### Loops
+
+
+##### For Loop
+- Using a forloop we can iterate over a collection
+
+```kotlin
+val names = listOf("adam","ben", "chloe")
+for (name in names){
+println("Name is : $name")
+}
+
+```
+
+##### while Loop
+
+```kotlin
+private fun whileLoop() {
+  var x = 1;
+  while (x < 5) {
+    println("Inside while : $x")
+    x++
+  }
+}
+```
+
+
+##### do-while Loop
+
+```kotlin
+private fun doWhileLoop() {
+    var x = 0
+    do {
+        println("Inside do while : $x")
+        x++
+    }while (x < 5)
+}
+```
+
+#### Labels
+
+- You can label a piece of code using text followed by **@**
+  - **loop@**
+- We can use this label to break or continue a loop
+
+- break loop
+```kotlin
+fun customLabelBreak(){
+
+    loop@ for (i in 1..100) {
+        for (j in 1..100) {
+            println("j is $j")
+            if (j==10) break@loop
+        }
+    }
+}
+```
+
+- break **innerloop**
+
+```kotlin
+fun customLabelContinue(){
+
+    loop@ for (i in 1..100) {
+        println()
+        println("i is $i")
+       innerLoop@ for (j in 1..100) {
+            print("j is $j")
+            //if (j==10) continue@loop
+           if (j==10) break@innerLoop
+        }
+    }
+}
+```
+
+- continue **@loop**
+
+```kotlin
+fun customLabelContinue(){
+    loop@ for (i in 1..100) {
+        println()
+        println("i is $i")
+       innerLoop@ for (j in 1..100) {
+            print("j is $j")
+            if (j==10) continue@loop
+        }
+    }
+}
+
+```
 
 ## Functions
 ###  Scope Functions
