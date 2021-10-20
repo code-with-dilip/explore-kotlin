@@ -348,6 +348,46 @@ println("Length of the String is ${strLength(name)}")
 - **Unit** is equivalent to void in Java
 
 ## Functions
+
+###  Functions in Kotlin
+
+- A function is something in kotlin which can do a unit of work.
+
+####  Unit Return Type
+
+- A function that does not return anything is represented as a **Unit** and this is equivalent to a void in java 
+
+```kotlin
+fun printSomething() : Unit{
+    println("printSomething")
+}
+```
+
+####  Nothing Return Type
+
+- A function with a **Nothing** return type never returns.
+
+```kotlin
+fun nothing() : Nothing{
+  throw RuntimeException("Exception Occurred")
+}
+```
+
+####  Function with params and return type
+
+```kotlin
+fun multiply(x : Int , y : Int): Int {
+  return x+y
+}
+```
+
+- Like variables, the kotlin compiler can infer the return types too.
+  - You basically inline the method body to the by assigning the method body after the equal operator
+  - This only works for single line method body
+```kotlin
+fun multiply1(x : Int , y : Int) = x+y
+```
+
 ###  Scope Functions
 
 - Scope Functions are fundamentally there to make your code more concise and readable
