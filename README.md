@@ -256,6 +256,83 @@ fun customLabelContinue(){
 
 ```
 
+### Conditionals ( if and when)
+
+####  If and else
+
+- **if** is an expression in kotlin
+  - This means that the last line in the if statement is assigned as a result to the variable
+  - Anytime using **if** as an expression, it is mandatory to have an **else** block
+
+```kotlin
+private fun ifExpression(name: String) {
+    val resultName = if (name.length == 4) {
+        println("Length is 4 and the name is $name")
+        name.toUpperCase()
+    } else {
+        println("Length is not 4 and the name is $name")
+        name.toUpperCase()
+    }
+
+    println("resultName : $resultName")
+}
+```
+
+####  when block
+
+- **when** block is a nice replacement for multiple if else statements
+  - This syntax is compact
+  - This is kind of an equivalent to **switch-case** statement in Java
+
+```kotlin
+fun whenBlock(name: String) {
+
+   /* when (name) {
+        "Alex" -> println("Name is Alex")
+        "Ben" -> println("Name is Ben")
+    }*/
+
+    when (name.length) {
+        4 -> println("Length of the name is 4")
+        5 -> println("Length of the name is 5")
+    }
+
+
+}
+```
+
+- **when** can also be an expression
+  - else block is mandatory when using **when** as an expression
+
+```kotlin
+
+fun whenBlockExpression(name: String) {
+
+    val whenResult =  when (name.length) {
+        4 -> {
+            println("Length of the name is 4")
+            name
+        }
+        5 -> {
+            println("Length of the name is 5")
+            name
+        }
+        else -> {
+            println("Length of the name is not 4 or 5")
+            ""
+        }
+    }
+    println(whenResult)
+
+}
+
+```
+
+### Any, Unit
+
+- **Any** is equivalent to an Object in Java
+- **Unit** is equivalent to void in Java
+
 ## Functions
 ###  Scope Functions
 
