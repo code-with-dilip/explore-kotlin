@@ -328,6 +328,20 @@ fun whenBlockExpression(name: String) {
 
 ```
 
+
+### Imports
+
+- This concept is pretty much similar to how java works
+
+#### Named Imports
+- This concept can be used if you have conflicts with different classes
+
+```kotlin
+import com.explorekotlin.basics.commons.strToLength as strLength
+
+println("Length of the String is ${strLength(name)}")
+```
+
 ### Any, Unit
 
 - **Any** is equivalent to an Object in Java

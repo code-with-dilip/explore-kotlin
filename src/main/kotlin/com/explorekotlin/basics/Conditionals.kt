@@ -1,5 +1,8 @@
 package com.explorekotlin.basics
 
+//import com.explorekotlin.basics.commons.strToLength
+import com.explorekotlin.basics.commons.strToLength as strLength
+
 fun main() {
 
     val name = "Alex"
@@ -13,6 +16,9 @@ fun main() {
     //ifExpression(name)
     //whenBlock(name)
     whenBlockExpression(name)
+
+    println("Length of the String is ${strLength(name)}")
+
 
 
 }
