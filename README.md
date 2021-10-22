@@ -567,6 +567,26 @@ var phoneNumber : String = ""
   - protected - Same as private and subclasses
   - internal - Any client inside the module
 
+### Data classes
+
+- Classes that are created in enterprise applications wont have any behavior 
+  - It just holds the data for the other classes to use and apply some business logic on top of those classes
+
+- By adding the **data** keyword before the class
+  - This automatically takes of generating the equals, toString and hashCode functions for you
+  - Advantages:
+    - This saves us from the boilerplate code
+    - Object equality checks is available out of the box
+    - This also has the copy functions similar to clone which helps us to copy properties from one to another
+    
+```kotlin
+data class CustomerData(  val id: Int,
+                          var name: String = "",
+                          val email: String = "",
+                          val yearOfBirth: Int = 0)
+```
+
+
 
 ###  Scope Functions
 
