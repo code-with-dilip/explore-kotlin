@@ -552,6 +552,22 @@ var phoneNumber : String = ""
         field = value // field is a special one which is also known as a  backing field value holds the value of that property
     }
 ```
+
+### Visibility Modifiers
+- The default visibility modifier in kotlin is **public**
+- public
+  - Default and anywhere accessible
+- private
+  - Visible only within the file containing declaration
+- internal
+  - Visible anywhere within the module
+    - Module here refers to the maven module or client module
+- Classes
+  - private - Only available to class members
+  - protected - Same as private and subclasses
+  - internal - Any client inside the module
+
+
 ###  Scope Functions
 
 - Scope Functions are fundamentally there to make your code more concise and readable
