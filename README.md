@@ -383,10 +383,61 @@ fun multiply(x : Int , y : Int): Int {
 
 - Like variables, the kotlin compiler can infer the return types too.
   - You basically inline the method body to the by assigning the method body after the equal operator
-  - This only works for single line method body
+  - This only works for single line method body.
+    - Single expression function does not need a method block
+    
 ```kotlin
 fun multiply1(x : Int , y : Int) = x+y
 ```
+
+###  Functions with default parameters
+
+- In the below example, we have z with the default value 
+  - If the value is not passed in then the default value will be used. 
+  
+```kotlin
+fun multiply2(x : Int , y : Int, z: Int = 1): Int {
+    println("x : $x and y : $y")
+    return x*y
+}
+```
+
+###  Functions with named parameters
+
+- The caller of the function can invoke the function by calling out the names of the parameters
+  - This makes the code more expressive
+
+```kotlin
+
+fun multiply2(x : Int , y : Int, z: Int = 1, w : Int): Int {
+    println("x : $x and y : $y")
+    return x*y*z
+}
+```
+- Function invocation for **multiply2**
+```kotlin
+multiply2(2,3, w = 3)
+```
+
+### Functions with Unlimited Parameters
+
+- use **vararg** as a type for functions that requires indefinite number of parameters
+
+```kotlin
+fun printMultipleThings(vararg strings: String){
+    printVarargs(*strings)
+}
+
+private fun printVarargs(vararg strings: String) {
+    for (string in strings) {
+        println("String : $string")
+    }
+}
+```
+
+- Passing **vararg** as a argument to another function requires you to use a **spread** operator
+  - The spread operator is *
+
 
 ###  Scope Functions
 
