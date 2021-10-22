@@ -1,4 +1,4 @@
-package com.explorekotlin.functions
+package com.explorekotlin._2functions
 
 import com.explorekotlin.higher_order_functions.sum
 

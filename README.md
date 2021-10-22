@@ -32,6 +32,7 @@ test {
 
 - var
   - This allows you to create mutable variables in kotlin
+  - This is a read write property in kotlin
 
 ```yaml
     var age: Int
@@ -337,7 +338,7 @@ fun whenBlockExpression(name: String) {
 - This concept can be used if you have conflicts with different classes
 
 ```kotlin
-import com.explorekotlin.basics.commons.strToLength as strLength
+import com.explorekotlin._1basics.commons.strToLength as strLength
 
 println("Length of the String is ${strLength(name)}")
 ```
@@ -438,7 +439,119 @@ private fun printVarargs(vararg strings: String) {
 - Passing **vararg** as a argument to another function requires you to use a **spread** operator
   - The spread operator is *
 
+## Classes in Kotlin
 
+- Kotlin is an object oriented language with first class support for functional construct's
+
+### Class in Kotlin
+
+- Classes in kotlin are created with the **class** keyword
+  - Classes can have properties
+    - Here we are declaring it as var so that the properties can be set later
+      - You need to have a default value if we are just declaring this as a property with **var** type
+      - There will be compilation issue if we don't initialize this value
+
+```kotlin
+class Customer {
+  var id : Int = 0
+  var name : String = ""
+}
+
+fun main() {
+
+  val customer = Customer()
+}
+
+```
+
+#### Initializing Class properties using Constructor
+
+- The traditional way of doing it is by pass through the constructor and intiailize the classs properties
+
+```kotlin
+class Customer (initId: Int,initName : String ) {
+    var id : Int = initId
+    var name : String = initName
+}
+```
+
+- But the above looks cumbersome, and a has a lot of boilerplate code
+- Kotlin has a really nice way if writing concise code
+
+- The below syntax removes a lot of boiler plate code
+  - The type **var** or **val** is necessary to treat this as a property for this class
+  
+```kotlin
+class Customer (var id: Int,var name : String)
+```
+
+##### Constructor with Default Values
+
+- Using default values give you the behavior of the class with multiple constructors
+
+```kotlin
+class Customer (var id: Int,var name : String = "")
+
+
+val customer = Customer(1, "Dilip")
+println("customer name : ${customer.name}")
+
+val customer1 = Customer(1) // Instance without the name
+
+```
+
+##### Run intialization code during Object Creation
+- We can use the **init** block to achieve the same
+
+```kotlin
+class Customer (var id: Int,var name : String = ""){
+
+    init {
+        name = name.toUpperCase()
+    }
+
+}
+```
+
+#### Secondary Constructor
+
+- You are allowed to create constructors with **construct** keyword and these are called secondary constructors
+
+```kotlin
+constructor( email : String) : this(0, email= email){
+    }
+```
+- This constructor needs to invoke the base constructor 
+
+
+#### Custom Getter/Setters in Kotlin
+
+##### Getter
+
+- You normally need this when you need to apply some custom logic on the properties of the class
+- Below is the custom getter for a property **age**
+
+```kotlin
+val age: Int
+        get() {
+            return LocalDate.now().year - yearOfBirth
+        }
+```
+##### Setter
+
+- If you would like to apply some property validation then you can use **custom setters**
+  - The one key thing when using custom setters is you can set the value to the propery using the **field**
+    - **field** is a special one which is also known as a  backing field value holds the value of that property
+
+```kotlin
+var phoneNumber : String = ""
+    set(value)  {
+        if(value.length < 10){
+            throw IllegalArgumentException("Phone Number should be 10 characters")
+        }
+        field = value // field is a special one which is also known as a  backing field value holds the value of that property
+    }
+```
 ###  Scope Functions
 
 - Scope Functions are fundamentally there to make your code more concise and readable

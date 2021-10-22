@@ -1,7 +1,7 @@
-package com.explorekotlin.basics
+package com.explorekotlin._1basics
 
 //import com.explorekotlin.basics.commons.strToLength
-import com.explorekotlin.basics.commons.strToLength as strLength
+import com.explorekotlin._1basics.commons.strToLength as strLength
 
 fun main() {
 
