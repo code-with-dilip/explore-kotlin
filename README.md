@@ -818,6 +818,33 @@ data class DomesticAnimal(
 
 ```
 
+
+#### Abstract Classes in Kotlin
+- They are normally created with the **abstract** keyword
+  - You cannot create an instance of this class
+  - This class can have **state**
+  - This class can have member functions
+  - You can make certain behaviors abstract and mandate the classes that extends it implement it.
+
+```kotlin
+abstract class AbstractPerson{
+    var isAlive : Boolean = true
+    abstract fun action()
+
+    fun alive(): String {
+        return isAlive.toString()
+    }
+}
+
+class Employee : AbstractPerson(){
+    override fun action() {
+        TODO("Not yet implemented")
+    }
+
+}
+```
+
+
 ### Scope Functions
 
 - Scope Functions are fundamentally there to make your code more concise and readable
