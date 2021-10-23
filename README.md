@@ -452,6 +452,7 @@ private fun printVarargs(vararg strings: String) {
 ### Class in Kotlin
 
 - Classes in kotlin are created with the **class** keyword
+- Classes have first class support in Kotlin
     - Classes can have properties
         - Here we are declaring it as var so that the properties can be set later
             - You need to have a default value if we are just declaring this as a property with **var** type
@@ -579,10 +580,10 @@ var phoneNumber: String = ""
 
 ### Data classes
 
-- Classes that are created in enterprise applications wont have any behavior
+- There are some Classes that are created in enterprise applications won't have any behavior
     - It just holds the data for the other classes to use and apply some business logic on top of those classes
 
-- By adding the **data** keyword before the class
+- By adding the **data** modifier before the class
     - This automatically takes of generating the equals, toString and hashCode functions for you
     - Advantages:
         - This saves us from the boilerplate code
@@ -698,6 +699,17 @@ enum class PriorityEnum(val value: Int) {
 
     fun abc() {
     }
+}
+```
+
+### objects in Kotlin
+
+- **object** helps us to create **singleton's** in Kotlin
+- You can access the properties inside the class without the instance of the object
+
+```kotlin
+object CommonUtil {
+    const val appName = "EXPLORE_KOTLIN"
 }
 ```
 
