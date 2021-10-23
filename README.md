@@ -713,6 +713,111 @@ object CommonUtil {
 }
 ```
 
+##  Inheritance in Kotlin
+
+- In kotlin, the base class for any class is **Any**
+- In Kotlin, all classes are final by default which means we cannot extend a class
+- You need to use the **open** modifier to allow a class to be extended
+  - The **open** modifier is needed in the functions if the subclass is going to override a behavior
+  
+```kotlin
+open class Person{
+    open fun validate(){
+        println("Inside Person validate")
+    }
+
+}
+
+class Customer : Person() {
+    override fun validate(){
+        super.validate()
+        println("Inside Customer validate")
+    }
+
+}
+```
+
+#### Using super keyword
+
+- To call the parent class function we can use the **super** keyword.
+
+```kotlin
+class Customer : Person() {
+    override fun validate(){
+        super.validate()
+        println("Inside Customer validate")
+    }
+
+```
+
+- **super** keyword and constructor
+  - Basically you need to take out the braces in the class creation and use the super keyword along with your constructor() keyword 
+  
+```kotlin
+class Customer : Person {
+
+    constructor() : super() {
+
+    }
+    override fun validate(){
+        super.validate()
+        println("Inside Customer validate")
+    }
+
+}
+```
+
+#### Second level of Inheritance
+
+- We need to make sure the Customer class has **open** modifier in it
+
+```kotlin
+
+class SpecialCustomer : Customer(){
+
+    fun validate1() {
+        super.validate()
+    }
+
+}
+```
+
+- Let's say that we dont want this class to override to **validate()** function
+  - We can add the **final** keyword to that class
+  
+```kotlin
+   final override fun validate(){
+        super.validate()
+        println("Inside Customer validate")
+    }
+```
+
+#### Inheritance in data Classes
+
+- You cannot add a open modifier to data classes
+  - Inheritance is not supported in data classes
+  - But you can still extend a regular class from **data** class
+
+```kotlin
+open class Animal(open val name: String)
+
+data class WildAnimal(
+    override val name: String,
+    val type: String,
+    val country: String,
+    val age: Int
+) : Animal(name)
+
+
+data class DomesticAnimal(
+    override val name: String,
+    val type: String,
+    val country: String,
+    val age: Int
+) : Animal(name)
+
+```
+
 ### Scope Functions
 
 - Scope Functions are fundamentally there to make your code more concise and readable
