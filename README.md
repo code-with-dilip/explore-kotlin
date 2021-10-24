@@ -844,6 +844,99 @@ class Employee : AbstractPerson(){
 }
 ```
 
+### Interfaces in Kotlin
+
+
+- You can only field's of type **val**
+
+```kotlin
+interface CourseRepository {
+    val isCoursePublished : Boolean
+        get() = false
+
+    fun saveCourse(course: Course): Int {
+        println("course : $course")
+        return course.id
+    }
+
+    fun getById(id: Int): Course
+
+}
+```
+
+- You are just allowed to have properties declared in the interface of type **val**
+  - There is no way we can alter the state of the property in interfaces
+- You are allowed to manage the state of the variable in the subclass that's implementing it.
+
+```kotlin
+class SqlCourseRepository : CourseRepository {
+
+    override fun getById(id: Int): Course {
+        TODO("Not yet implemented")
+    }
+    override var isCoursePublished: Boolean = false
+        get() {
+            return true
+        }
+    set(value) {
+        field = value
+    }
+}
+```
+
+#### Override member functions
+
+- We can override member functions in the implementation class
+  - One key thing to note here is that , we dont need the open modifier in the parent class
+
+- But you still need the **override** modifier in the subclass.
+
+```kotlin
+override fun saveCourse(course: Course): Int {
+        println("course in SqlCourseRepository : $course")
+        return course.id
+    }
+```
+
+
+#### Handling Ambiguity from Subclass
+
+- Lets say you have a class that implements two interfaces
+  - Both the interface have the same function
+  - You have to call the default implementation of that class then you need to provide the type and then call the appropriate function
+    ```kotlin
+    super<A>.doSomething()
+    ```
+```kotlin
+interface A {
+
+    fun doSomething(){
+        println("Do Something in A")
+    }
+}
+
+interface B {
+    fun doSomething(){
+        println("Do Something in B")
+    }
+}
+
+class AB : A, B {
+    override fun doSomething() {
+        super<A>.doSomething()
+        println("Do something in AB")
+
+    }
+
+}
+```
+
+
+
+#### Interface vs Abstract Classes
+- Abstract classes are allowed to have state but not the **Interface**
+- You can have subclasses that implements multiple **Interface** but not the abstract class
+
 
 ### Scope Functions
 
