@@ -1,10 +1,11 @@
 package com.explorekotlin._4Inheritance
 
+
 interface CourseRepository {
     val isCoursePublished : Boolean
         get() = false
 
-    fun saveCourse(course: Course): Int {
+    fun saveEntity(course: Course): Int {
         println("course : $course")
         return course.id
     }
@@ -13,13 +14,22 @@ interface CourseRepository {
 
 }
 
+interface EmployeeRepository {
+    fun saveEntity(employee: Employee1): Int {
+        println("course : $employee")
+        return employee.id
+    }
+
+    fun getById(id: Int):Employee1
+}
+
 class SqlCourseRepository : CourseRepository {
 
     override fun getById(id: Int): Course {
         TODO("Not yet implemented")
     }
 
-    override fun saveCourse(course: Course): Int {
+    override fun saveEntity(course: Course): Int {
         println("course in SqlCourseRepository : $course")
         return course.id
     }
@@ -35,6 +45,9 @@ class SqlCourseRepository : CourseRepository {
 
 
 data class Course(val id: Int, val name: String) {
+}
+
+data class Employee1(val id: Int, val name: String) {
 }
 
 interface A {
@@ -64,7 +77,7 @@ fun main() {
     val course = Course(1, "Build Rest Services using Spring and Kotlin")
     val sqlCourseRepository = SqlCourseRepository()
     sqlCourseRepository.isCoursePublished = true
-    val savedId = sqlCourseRepository.saveCourse(course)
+    val savedId = sqlCourseRepository.saveEntity(course)
     println("savedId : $savedId")
 
     val ab = AB()

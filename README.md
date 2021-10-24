@@ -931,11 +931,57 @@ class AB : A, B {
 }
 ```
 
-
-
 #### Interface vs Abstract Classes
 - Abstract classes are allowed to have state but not the **Interface**
 - You can have subclasses that implements multiple **Interface** but not the abstract class
+
+
+### Generics in Kotlin
+
+- If you would like to create generic classes then you would use generic Types
+    - In this case, we are declaring an interface with a  generic Type **T** 
+  
+```kotlin
+interface Repository<T>{
+    fun getById(id: Int) : T
+    fun getAll() : List<T>
+}
+```
+
+- The implementation of the Repository is below, which actually takes care of implementing the actual functionality.
+
+```kotlin
+class GenericRepositoryImpl<T> : Repository<T> {
+    override fun getById(id: Int): T {
+        TODO("Not yet implemented")
+    }
+
+    override fun getAll(): List<T> {
+        TODO("Not yet implemented")
+    }
+}
+```
+
+#### Generic Types at the method level
+
+- This approach will only makes sense if we have different types returned by different functions
+
+```kotlin
+interface Repo {
+    fun <T> getById() : T
+    fun <R> getAll() : List<R>
+}
+
+class RepoImpl : Repo{
+    override fun <T> getById(): T {
+        TODO("Not yet implemented")
+    }
+
+    override fun <R> getAll(): List<R> {
+        TODO("Not yet implemented")
+    }
+}
+```
 
 
 ### Scope Functions
