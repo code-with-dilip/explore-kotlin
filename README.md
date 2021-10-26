@@ -982,7 +982,77 @@ class RepoImpl : Repo{
     }
 }
 ```
+## Working with nulls
 
+- One of the important concept thats used in many programming languages is the support null references
+  - Null references are troublesome and can introduce the most popular exception which is the **Null-Pointer Exception** in runtime.
+- Kotlin by default is a null safety programming language.
+
+### Null references in Kotlin
+- The reason why nulls are needed in the app:
+  - Sometimes you might have to declare the value as null 
+  - If nulls are not supported in Java then it might cause issues with  interoperability in Java
+- A nullable type in kotlin is declared using the **?**
+
+```aidl
+String?
+```
+
+- Trying to execute a function on a null reference without the **elvis** or the **null-assertion** operator will cause a compilation error in kotlin
+  - This is much better than the if null check that we perform traditionally and it cuts down a lot of boiler plate code
+
+```aidl
+    var name1 : String? = null
+    //println(name1?.length)
+    println(name1!!.length)
+```
+
+### Functions that return nullabla types
+
+```aidl
+fun upperCase(name : String?)  : String?{
+    return name?.uppercase()
+}
+
+```
+
+## Kotlin Tidbits
+
+
+### Type Casting in Kotlin
+
+- Kotlin does have the support for typecasting as like Java
+- We can check the type of cast using the **is** operator
+
+#### Smart Cast
+
+- One of the important thing about this is Kotlin can apply smart cast once the object resolves to a particulat type
+
+```aidl
+fun checkTypeOfPerson(person: Person) {
+    if(person is Employee){
+        person.vacationDays(10)
+    }
+
+}
+```
+
+#### Type Casting Manually
+
+- Type casting can be done usint the **as** operator
+
+```aidl
+val castValue = count as String
+```
+
+#### Safe TypeCasting
+
+- We can use the elvis operator to apply the casting safely.
+  - Without the **?**, if the casting fails then it will throw an exception
+
+```aidl
+val castValue1 = count as? String
+```
 
 ### Scope Functions
 

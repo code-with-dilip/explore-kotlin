@@ -1,7 +1,6 @@
-import org.gradle.api.JavaVersion
 
 plugins {
-    id 'org.jetbrains.kotlin.jvm' version '1.3.41'
+    id 'org.jetbrains.kotlin.jvm' version '1.5.31'
     id("io.kotest") version "0.2.6"
 
 }
