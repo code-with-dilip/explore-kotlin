@@ -1067,6 +1067,36 @@ val namePair = nameAndLength("Dilip")
 
 ```
 
+### Deconstructing Values
+
+- This feature in kotlin allows us to write more expressive code.
+  - Here we can provide proper names to the values that are returned from the function
+  - This is much better than calling first and second in the **Pair** type 
+  
+```kotlin
+val (name, length) = namePair
+    println("$name and $length")
+```
+
+- We can also deconstruct regular objects
+
+```aidl
+val customer = CustomerData(1, "Dilip", yearOfBirth = 1987)
+    val (id, name2,email,yob ) = customer
+    println("$id and $name2 and $yob" )
+```
+
+#### Object Destructuring on a collection
+- Object destructuring can be applied on a collection too.
+- We can apply object de-structuring on a collection using the below approach 
+
+```aidl
+val pairsList = listOf(nameAndLength("Dilip"), nameAndLength("Scooby"))
+
+    for ((name, length) in pairsList){
+        println("$name and $length")
+    }
+```
 
 ### Scope Functions
 
