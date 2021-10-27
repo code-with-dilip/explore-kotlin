@@ -1053,6 +1053,20 @@ val castValue = count as String
 ```aidl
 val castValue1 = count as? String
 ```
+### Pair and Triples in Kotlin
+
+- Pair and Triples are handy when you have a function that's going to return multiple values as a  **return** value.
+
+```kotlin
+
+val namePair = nameAndLength("Dilip")
+    println("${namePair.first} and ${namePair.second}")
+
+    val nameTriple = nameAndLengthAndAge("Dilip", 33)
+    println("${nameTriple.first} and ${nameTriple.second} and the age is ${nameTriple.third}")
+
+```
+
 
 ### Scope Functions
 

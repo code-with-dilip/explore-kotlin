@@ -36,5 +36,4 @@ fun main() {
     println("count : $count")
     val castValue1 = count as? String
 
-
 }
