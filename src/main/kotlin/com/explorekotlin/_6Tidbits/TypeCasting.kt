@@ -1,4 +1,4 @@
-package com.explorekotlin._Tidbits
+package com.explorekotlin._6Tidbits
 
 
 open class Person {

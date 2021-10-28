@@ -268,6 +268,7 @@ fun customLabelContinue() {
 - **if** is an expression in kotlin
     - This means that the last line in the if statement is assigned as a result to the variable
     - Anytime using **if** as an expression, it is mandatory to have an **else** block
+      - A quick thing to note is that different branches can execute different result
 
 ```kotlin
 private fun ifExpression(name: String) {
@@ -288,6 +289,7 @@ private fun ifExpression(name: String) {
 - **when** block is a nice replacement for multiple if else statements
     - This syntax is compact
     - This is kind of an equivalent to **switch-case** statement in Java
+    - You are allowed to have multiple conditions in the same check
 
 ```kotlin
 fun whenBlock(name: String) {
@@ -298,7 +300,7 @@ fun whenBlock(name: String) {
      }*/
 
     when (name.length) {
-        4 -> println("Length of the name is 4")
+        4, 6 -> println("Length of the name is 4")
         5 -> println("Length of the name is 5")
     }
 
@@ -1097,6 +1099,73 @@ val pairsList = listOf(nameAndLength("Dilip"), nameAndLength("Scooby"))
         println("$name and $length")
     }
 ```
+
+### Exceptions in Kotlin
+
+- Throwable is the base class for exceptions and errors in Kotlin
+
+#### Try/Catch Block
+
+- Exceptions can be handled using the **try/catch** block in kotlin
+  - You can also use the finally block to take some actions before the call returns
+
+```kotlin
+try {
+        checkIsNumber("A")
+    } catch (ex: NotANumberException) {
+        println("NotANumberException observed in ${ex.message}")
+    } catch (ex: Exception) {
+        println("Exception is $ex")
+    }finally {
+        println("Inside Finally Block")
+    }
+```
+
+#### Using try/catch block as an expression
+
+- The last statement in each branch is the value that gets assigned to the **result**
+  - In the event of an exception here the values of the result will be Unit because we are just printing the exception and moving on
+  - The code in the **finally** block will not be assigned as a result of this expression
+```aidl
+val result = try {
+        checkIsNumber("A")
+    } catch (ex: NotANumberException) {
+        println("NotANumberException observed in ${ex.message}")
+    } catch (ex: Exception) {
+        println("Exception is $ex")
+    }finally {
+        println("Inside Finally Block")
+    }
+```
+
+### Declaring Constants
+
+- Constants can be declaring in multiple ways
+
+#### Creating an object
+  - Define the constant values there
+
+```aidl
+object Constants {
+    const val courseName = "Kotlin Programming"
+    const val courseName1 = "Kotlin Programming"
+}
+```
+
+#### Creating a class level property
+
+```aidl
+val courseName1 = "Kotlin Programming"
+```
+
+
+#### Creating a property using the const modifier
+
+```aidl
+const val courseName = "Kotlin Programming"
+```
+
+### Annotations in Kotlin
 
 ### Scope Functions
 

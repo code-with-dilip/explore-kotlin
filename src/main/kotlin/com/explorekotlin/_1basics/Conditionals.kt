@@ -41,7 +41,7 @@ fun whenBlock(name: String) {
 fun whenBlockExpression(name: String) {
 
     val whenResult =  when (name.length) {
-        4 -> {
+        4, 6 -> {
             println("Length of the name is 4")
             name
         }
