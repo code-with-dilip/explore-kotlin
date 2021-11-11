@@ -1189,7 +1189,10 @@ const val courseName = "Kotlin Programming"
 
 - This function is more or less a side effect, and it does not change the original object
 
-## Higher Order Functions
+
+## Getting Functional
+
+### Higher Order Functions
 
 - A Higher Order Function is a type of Function which has two meanings:
     - Your own function that takes lambda as arguments
@@ -1232,21 +1235,77 @@ fun sum(x: Int,y: Int) = x +y
     println(operation(1, 2, ::sum))
 ```
 
-- Invoking the Higher Order Function using Lambda
-
-```
-    println(operation(1, 2) { x, y -> x + y })
-
-```
-
-### Calling Functions passed as arguments
+#### Calling Functions passed as arguments
 
 - Use the function argument and followed by that add the paranthesis
-    - Add the necessary arguments to it
+  - Add the necessary arguments to it
 
 ```
 fun operation(x : Int, y :Int , op : (Int, Int)-> Int): Int {
     return op(x, y)
+}
+```
+
+
+### Lambda Expression
+
+- Lambda syntax allow you to create a behavior without having to create a function
+
+```groovy
+{ x, y -> x + y })
+(parameters) -> body
+```
+- Invoking the Higher Order Function using Lambda
+- In this example, we dont need to explicitly call out the types as types are already defined in the actual funciton
+  
+```
+    println(operation(1, 2) { x, y -> x + y })
+```
+
+#### Extracting Lambda to a variable
+
+- In this case, we need to explicitly call out the types
+
+```groovy
+val sumLamda = {x: Int,y: Int -> x-y}
+```
+
+#### Passing the last lambda argument without the brackets
+
+- Kotlin allows the convention of not having to pass it as a single argument
+
+```kotlin
+
+
+fun unaryOperation(x: Int, op: (Int) -> Int) {
+  val result = op(x)
+  println("result : $result")
+}
+
+unaryOperation(1) { x -> x * x }
+
+```
+
+####  Multiline Lambda Body
+
+```kotlin
+    transaction("Dilip"){
+        val result = it.uppercase()
+        println(result)
+        println("MultiLine Lamda")
+    }
+```
+
+#### Create Anonymous Function
+
+- You can create a function without the name
+
+```kotlin
+fun anonymousFunc(){
+
+    unaryOperation(3, fun(x : Int) : Int {
+        return x * x
+    })
 }
 ```
 
