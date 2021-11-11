@@ -1167,6 +1167,8 @@ const val courseName = "Kotlin Programming"
 
 ### Annotations in Kotlin
 
+- Kotlin using Reflection 
+
 ### Scope Functions
 
 - Scope Functions are fundamentally there to make your code more concise and readable
@@ -1246,6 +1248,105 @@ fun sum(x: Int,y: Int) = x +y
 fun operation(x : Int, y :Int , op : (Int, Int)-> Int): Int {
     return op(x, y)
 }
+```
+
+## MetaProgramming
+
+- This allows us to introspect the code and change the behavior of the code at runtime
+  - Behavior of the code can be modified on properties, functions and more
+- You can achieve this using **Reflection**
+  - You can achieve this by using two method
+    - Using the Java Reflection API
+    - Using the Kotlin Reflection API
+
+### Using Java Reflection API
+
+- The **.javaclass** in this example allows you start leveraging the java reflection api 
+
+```groovy
+fun introspected(obj: Any){
+
+    println("className using Reflection ${obj.javaClass.simpleName}")
+    obj.javaClass.fields.forEach {
+        println("Field name : ${it.name} and type is ${it.type}")
+    }
+    println("Functions:\n")
+
+    obj.javaClass.methods.forEach {
+        println("Method name is : ${it.name}")
+    }
+}
+
+```
+
+
+### Using Kotlin Reflection API
+
+- The KClass is the reflection class for **Kotlin**
+
+#### Accessing the Member properties of the fields
+
+```kotlin
+    classInfo.memberProperties
+        .forEach {
+            println("Name ${it.name} of type ${it.returnType}")
+        }
+```
+
+#### Creating a Constructor using Kotlin Reflection API
+
+```kotlin
+    val constructor = ::Transaction
+```
+
+```
+val transaction = constructor.call(1, 2000.0, "20000")
+```
+
+- Creating an instance using the **callBy** function of the constructor reference 
+
+```groovy
+val transaction1 = constructor.callBy(mapOf(constructor.parameters[0] to 2,constructor.parameters[1] to 2000.0, constructor.parameters[2] to "20000"))
+```
+
+
+### Annotations in Kotlin
+
+- Annotations in Kotlin 
+
+```groovy
+@Table(name = "Contact_Table")
+data class Contact(val id: Int, @Field(name="column_name")val name: String, val email: String)
+```
+
+
+```groovy
+@Target(AnnotationTarget.FIELD)
+@MustBeDocumented
+@Repeatable
+@Retention(AnnotationRetention.RUNTIME)
+annotation class  Field(val name: String)
+```
+- @MustBeDocumented
+  - This states that this information must be present in the generated source code
+- @Target(AnnotationTarget.FIELD)
+  - This mandates that the annotation should be used against the field
+- @Retention(AnnotationRetention.RUNTIME)
+  - This annotation information is retained in runtime
+
+- Using the annotation in the actual class
+
+```groovy
+@Table(name = "Contact_Table")
+data class Contact(val id: Int, @Field(name="column_name")val name: String, val email: String)
+```
+
+#### Accessing the annotation information using the Kotlin Reflection API
+
+
+```groovy
+val annotation = Contact::class.annotations.find { it.annotationClass.simpleName == "Table" }
+println(annotation)
 ```
 
 ## Inline Functions
