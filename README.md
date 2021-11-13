@@ -27,6 +27,7 @@ test {
 - Kotlin is a language that targets the **JVM** and **JavaScript**
 - Semi Colons are optional in Kotlin
 - Multiple classes per file is allowed
+- Kotlin is a language that allows you to write concise and expressive code
 
 ### val and var
 
@@ -1020,7 +1021,6 @@ fun upperCase(name : String?)  : String?{
 
 ## Kotlin Tidbits
 
-
 ### Type Casting in Kotlin
 
 - Kotlin does have the support for typecasting as like Java
@@ -1246,7 +1246,6 @@ fun operation(x : Int, y :Int , op : (Int, Int)-> Int): Int {
 }
 ```
 
-
 ### Lambda Expression
 
 - Lambda syntax allow you to create a behavior without having to create a function
@@ -1308,6 +1307,106 @@ fun anonymousFunc(){
     })
 }
 ```
+
+### Closures in Kotlin
+
+- The concept of accessing a local variable inside lambda is a closure
+
+```kotlin
+fun outsideFun(){
+    val number = 10
+    unaryOperation(10) {
+        println(number+1)
+        val number1 = number+1
+        it * number1
+    }
+}
+
+```
+
+## Interoperabillity in Java
+
+- Kotlin is a language that works really well with Java classes
+- Let's say you have a java project and you want to introduce kotlin then it's totally possible
+  - The advantage here is that you don't have to completely put the effort to change your existing code
+    - All you need in this case is the kotlin compiler added to your class path
+
+### Talking with Java from Kotlin
+
+- All the classes that's tied to Java should reside in src/main/Java directory
+- Kotlin can interact with Java class just like interacting with any other class
+  - But one thing to call out is that, we will need to use the kotlin conventions to interact with Java class
+  
+
+#### Accessing a Java class from Kotlin 
+
+- In here all the variables are accessed using the kotlin conventions
+  - Even though there is a setter/getter method, we still access the field using kotlin convention 
+
+```kotlin
+val customer = CustomerJava()
+customer.email = "dilip@abc.com"
+customer.name = "Dilip"
+customer.printDetails()
+```
+
+
+#### Inheritance in Kotlin
+
+- You can implement an interface without any issues as like you implement the interface in kotlin
+- The **Return** type of the functions can be null
+
+```kotlin
+class CustomerRepositoryImpl : CustomerRepository? {
+    override fun findById(id: Int?): CustomerJava {
+        TODO("Not yet implemented")
+    }
+
+    override fun findCustomers(): MutableList<CustomerJava>? {
+        TODO("Not yet implemented")
+    }
+}
+```
+
+### Working in Nulls in InterOperability
+
+- In Java , null is a valid return type for any function
+  - Java does not have a concept of a nullable or non-nullable type
+- So, the kotlin code that interacts with Java code needs to handle it in their end.
+
+#### Platform Types in Kotlin
+
+- A Java class that returns a String will have the return type as **String!**
+  - The exclamation in the return types infers to a platform type, in this case its the JVM
+  - There is no equivalent to this in Kotlin
+
+- Example of a platform type return type  
+- 
+```
+customer.nonNull()
+```
+
+- We can change the behavior that can add specific things to the language
+  - This makes sure that the return type matches to what kotlin expects 
+  
+```
+public @NotNull String nonNull(){
+
+        return "I am not null";
+    }
+```
+
+### Talking with Kotlin from Java
+
+####  Interacting with Top Level Functions
+
+- The regular syntax is to use the FileName and invoke the class 
+
+```kotlin
+KotlinTopLevelFunctionsKt.prefix("abc", "def");
+```
+
+
 
 ## MetaProgramming
 
