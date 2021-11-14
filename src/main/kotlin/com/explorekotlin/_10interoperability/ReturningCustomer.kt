@@ -1,5 +1,6 @@
 package com.explorekotlin._10interoperability
 
+
 import com.explorekotlin.domain.CustomerJava
 import com.explorekotlin.domain.CustomerRepository
 
@@ -8,6 +9,11 @@ class ReturningCustomer(
     var name1: String,
     val email1: String
 ) : CustomerJava(id, name1, email1)
+
+
+fun ReturningCustomer.extenstion() {
+    println("Inside Extension Function")
+}
 
 class CustomerRepositoryImpl : CustomerRepository {
     override fun findById(id: Int?): CustomerJava? {
@@ -18,6 +24,7 @@ class CustomerRepositoryImpl : CustomerRepository {
         TODO("Not yet implemented")
     }
 }
+
 
 fun main() {
 

@@ -1430,6 +1430,13 @@ const val NAME_CONSTANT = "KOTLIN_FILE"
 System.out.println(CommonUtilities.NAME_CONSTANT);
 ```
 
+### Interaction with Kotlin Extension Functions in Java
+
+- You can only access an extension function by their namne of the class and then pass the instance to it.
+
+```kotlin
+ReturningCustomerKt.extenstion(returningCustomer);
+```
 
 ## MetaProgramming
 
