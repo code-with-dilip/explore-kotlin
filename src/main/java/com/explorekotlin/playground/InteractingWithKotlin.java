@@ -11,6 +11,9 @@ public class InteractingWithKotlin {
         var result = CommonUtilities.prefix("abc", "def");
         System.out.println("result :" + result);
 
+        System.out.println(CommonUtilities.getName());
+        System.out.println(CommonUtilities.NAME_CONSTANT);
+
 
     }
 }

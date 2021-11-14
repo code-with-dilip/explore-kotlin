@@ -1398,7 +1398,7 @@ public @NotNull String nonNull(){
 
 ### Talking with Kotlin from Java
 
-####  Interacting with Top Level Functions
+####  Interacting with Top Level Functions & Variables
 
 - The regular syntax is to use the FileName and invoke the class 
 
@@ -1406,6 +1406,29 @@ public @NotNull String nonNull(){
 KotlinTopLevelFunctionsKt.prefix("abc", "def");
 ```
 
+- If the function name gets changes then this will introduce breaking change in the code.
+  - You can annotate the class like below.
+  - Make sure the JvmName is given before the package name declaration
+  
+```kotlin
+@file:JvmName(name="CommonUtilities")
+package com.explorekotlin._10interoperability
+```
+
+- Interacting with a regular field
+  - Regular variables can be accessed using the getter function, because thats the convention that java uses to access the fields
+
+```kotlin
+val name = "KOTLIN_FILE"
+System.out.println(CommonUtilities.getName());
+```
+
+- Interacting with a constant field
+
+```kotlin
+const val NAME_CONSTANT = "KOTLIN_FILE"
+System.out.println(CommonUtilities.NAME_CONSTANT);
+```
 
 
 ## MetaProgramming
