@@ -1398,7 +1398,71 @@ public @NotNull String nonNull(){
 
 ### Talking with Kotlin from Java
 
-####  Interacting with Top Level Functions & Variables
+- When interacting with kotlin classes using Java you need to use the Java Conventions 
+
+
+#### Creating a instance of a Kotlin Class
+
+- Fields that are non-nullable types in kotlin expect the java code to pass a valid value
+  - Passing null will through Runtime Exceptions
+  
+```java
+Customer returningCustomer = new Customer(1, "dilip",
+                "abc@dilip.com", 1987);
+returningCustomer.setName("dilp1");
+```
+- You can access and modify the properties using the setter method in kotlin
+  - Even though kotlin classes does not have one
+
+#### Accessing a property as a field
+
+- The below declaration allows Java class to access that property as a field 
+```kotlin
+@JvmField
+var property = "Value"
+```
+
+#### Handling Default values using @JvmOverloads
+
+- Java does not have the **default** value concept
+- If you would like to have the java code compile for a kotlin function then we need to use **@JvmOverloads** annotation  
+
+```kotlin
+@JvmOverloads
+    fun printString(str: String = "default"){
+        println("str : $str ")
+    }
+```
+
+#### Changing the function name using @JvmName
+
+- Changing the function name
+
+```kotlin
+@JvmName("changedName")
+    fun changeName(){
+        println("changeName")
+    }
+```
+
+```
+customer.changedName();
+```
+
+#### Throwing Checked Exceptions using @Throws
+
+- Kotlin does not have a concept of checked exceptions 
+
+```  
+  @Throws(IOException::class)
+    fun readFile(fileName: String){
+        if (fileName == ""){
+            throw  IOException("File Name is empty")
+        }
+    }
+```
+
+###  Interacting with Top Level Functions & Variables
 
 - The regular syntax is to use the FileName and invoke the class 
 

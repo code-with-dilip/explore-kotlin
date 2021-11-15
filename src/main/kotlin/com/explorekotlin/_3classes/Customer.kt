@@ -1,6 +1,8 @@
 package com.explorekotlin._3classes
 
+import java.io.IOException
 import java.time.LocalDate
+import kotlin.jvm.Throws
 
 /*
 class Customer (initId: Int,initName : String ) {
@@ -15,6 +17,26 @@ class Customer(
     val email: String = "",
     val yearOfBirth: Int = 0
 ) {
+
+    @JvmField
+    var property = "Value"
+
+    @JvmOverloads
+    fun printString(str: String = "default"){
+        println("str : $str ")
+    }
+
+    @JvmName("changedName")
+    fun changeName(){
+        println("changeName")
+    }
+
+    @Throws(IOException::class)
+    fun readFile(fileName: String){
+        if (fileName == ""){
+            throw  IOException("File Name is empty")
+        }
+    }
 
     /*   init {
            name = name.toUpperCase()
