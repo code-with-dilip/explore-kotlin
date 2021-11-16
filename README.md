@@ -1504,6 +1504,54 @@ ReturningCustomerKt.extenstion(returningCustomer);
 
 ## Kotlin Standard Libraries
 
+### Collections
+
+- Kotlin does not have collections of their own.
+- But they provide interfaces or helper classes to deal with Collections in Kotlin
+  - Mutable and Immutable Collections
+
+#### listOf & mutableListOf
+
+- Immutable List can be created like below
+
+```kotlin
+val names = listOf("adam", "ben", "chloe")
+println(names)
+
+val emptyList = emptyList<String>()
+println(emptyList)
+```
+
+- Mutable List can be created using below
+
+```kotlin
+val namesMutable = mutableListOf("adam", "ben", "chloe")
+    namesMutable.add("anna")
+    println(namesMutable)
+```
+
+
+#### hashMapOf & mutableMapOf
+
+- hashMapOf 
+  - This is used to create immutable map
+  
+```kotlin
+val hashMap = hashMapOf(Pair("dilip", 33),Pair("scooby", 4),Pair("yaash", 2)  )
+    println(hashMap)
+
+    val hashMap1 = hashMapOf("dilip" to  33 ,"scooby"  to  4,"yaash" to  2)
+    println(hashMap1)
+```
+
+- mutableMapOf
+  - This is used to create a mutable map
+
+```kotlin
+    val mutableMap = mutableMapOf("dilip" to  33 ,"scooby"  to  4,"yaash" to  2)
+    mutableMap.put("abc", 100)
+    println(mutableMap)
+```
 
 
 ## MetaProgramming
