@@ -1565,6 +1565,9 @@ val hashMap = hashMapOf(Pair("dilip", 33),Pair("scooby", 4),Pair("yaash", 2)  )
     println(mutableSet)
 ```
 
+### Collection Operations
+
+- Cover map, filter, flatMap
 
 
 ## MetaProgramming
