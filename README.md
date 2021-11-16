@@ -1554,6 +1554,19 @@ val hashMap = hashMapOf(Pair("dilip", 33),Pair("scooby", 4),Pair("yaash", 2)  )
 ```
 
 
+#### setOf & mutableSetOf
+
+
+```kotlin
+  val set = setOf("adam", "ben", "chloe")
+    println(set)
+
+    val mutableSet = mutableSetOf("adam", "ben", "chloe")
+    println(mutableSet)
+```
+
+
+
 ## MetaProgramming
 
 - This allows us to introspect the code and change the behavior of the code at runtime

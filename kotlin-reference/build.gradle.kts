@@ -12,6 +12,8 @@ repositories {
 }
 
 dependencies {
+
+    implementation((project(":kotlin-playground")))
     implementation(kotlin("stdlib"))
     implementation ("org.jetbrains.kotlin:kotlin-reflect")
 

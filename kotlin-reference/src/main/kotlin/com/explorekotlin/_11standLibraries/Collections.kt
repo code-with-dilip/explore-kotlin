@@ -25,5 +25,10 @@ fun main() {
     mutableMap.put("abc", 100)
     println(mutableMap)
 
+    val set = setOf("adam", "ben", "chloe")
+    println(set)
+
+    val mutableSet = mutableSetOf("adam", "ben", "chloe")
+    println(mutableSet)
 
 }
