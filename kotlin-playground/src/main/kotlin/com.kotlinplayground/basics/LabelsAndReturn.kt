@@ -2,6 +2,12 @@ package com.kotlinplayground.basics
 
 fun main() {
 
+    for(i in 1..5){
+        println("i is $i ")
+        if(i==3) break
+
+    }
+
     label()
 
     for (i in 1..10){
