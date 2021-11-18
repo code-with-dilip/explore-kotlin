@@ -1569,6 +1569,45 @@ val hashMap = hashMapOf(Pair("dilip", 33),Pair("scooby", 4),Pair("yaash", 2)  )
 
 - Cover map, filter, flatMap
 
+### Lazy Evaluation using Sequences in Kotlin
+
+- All the collection operations that we have seen so far are eager evaluation
+  - This means all the elements gets evaluated
+  - This is probably ok if the collection size is 10, 100, 1000
+  - But this is not ok for collections that are of size **10000**
+  
+#### Eager Evaluation Example
+  
+- The below code is an example of eager evaluation
+  - In the below example, the output gets printed only after the complete evaluation of the collection
+  - This will take a lot of time to complete the computation
+```kotlin
+private fun eagerEvaluation() {
+    val intRange = 1..100000000000
+    val output = intRange.filter { it < 40 }
+    println(output)
+}
+```
+
+#### Lazy Evaluation using asSequence
+
+- In this example, we use a sequence, but the elements in the collection gets processed one by one.
+  - We need to call a terminal operator like for each to view the result.
+  
+```kotlin
+private fun lazyEvaluation() {
+    val intRange = 1..100000000000
+    val output = intRange.asSequence()
+        .filter { it < 40 }
+        .map { it }
+        .forEach {
+            println(it)
+        }
+    println(output)
+}
+```
+
+
 
 ## MetaProgramming
 

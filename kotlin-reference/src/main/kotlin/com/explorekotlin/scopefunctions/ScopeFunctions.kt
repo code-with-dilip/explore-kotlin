@@ -11,7 +11,9 @@ fun writeToLog(message: String) {
 
 fun also(name : String?=null): Int {
     return Random.nextInt(100).also { value ->
+        println("Value is : $value")
         writeToLog("getRandomInt() generated value $value and the name is $name")
+
     }
 }
 
