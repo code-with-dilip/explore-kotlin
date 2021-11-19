@@ -2,29 +2,32 @@ package com.kotlinplayground.basics
 
 fun main() {
 
-    val name = "Alex"
-    if(name.length == 4){
+    var name = "Alex"
+    name = "Chloe"
+    val result = if (name.length == 4) {
         println("Name is Four Characters")
-    }else{
+        // name
+    } else {
         println("Name is Not Four Characters")
+        // name
     }
+    println("result: $result")
 
     //1 -> GOLD, 2-> SILVER, 3 -> BRONZE
     var position = 1
-    val medal = if( position == 1)
-    {
+    val medal = if (position == 1) {
         "GOLD"
-    }else if (position == 2){
+    } else if (position == 2) {
         "SILVER"
-    }else if (position == 3){
+    } else if (position == 3) {
         "BRONZE"
-    }else {
+    } else {
         "NO MEDAL"
     }
     println("medal : $medal")
 
     position = 3
-     val medal1 = when(position){
+    val medal1 = when (position) {
         1 -> "GOLD"
         2 -> "SILVER"
         3 -> {
@@ -35,6 +38,17 @@ fun main() {
     }
 
     println("medal1 : $medal1")
+
+    // Different Logic for Different Conditions
+    when {
+        position == 1 -> {
+            println("Gold Medal")
+        }
+        name == "ALEX" -> {
+            println("Name is ALex")
+        }
+
+    }
 
 
 }
