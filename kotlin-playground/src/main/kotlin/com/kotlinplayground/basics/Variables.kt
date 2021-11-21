@@ -1,5 +1,8 @@
 package com.kotlinplayground.basics
 
+import com.kotlinplayground.functions.courseName
+import com.kotlinplayground.functions.topLevelFunction
+
 
 fun main() {
 
@@ -32,4 +35,7 @@ fun main() {
     """.trimIndent()
 
     println("multiLine1 : $multiLine1")
+
+    topLevelFunction()
+    println("courseName : $courseName")
 }

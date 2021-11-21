@@ -1,6 +1,9 @@
 package com.kotlinplayground.functions
 
-fun printDetails(){
+import java.time.LocalDate
+
+//fun printHello(){
+fun printHello() : Unit {
     println("Hello!")
 }
 
@@ -10,6 +13,17 @@ fun printName(name: String){
 
 fun addition(x: Int, y : Int): Int {
     return x+y
+}
+
+/**
+ * Use this only if the whole method is an expression
+ * This is concise and you can avoid the redundant return statement
+ */
+fun addition_approach1(x: Int, y : Int) = x+y
+
+fun printPersonDetails(name : String, email : String = "", dob : LocalDate = LocalDate.now()){
+
+    println("Name is $name and the email is $email and the dob is $dob")
 }
 
 
@@ -30,9 +44,16 @@ fun printMultipleThings(vararg  alphabets: String){
 }
 
 fun main() {
-    printDetails()
+    printHello()
     printName("Dilip")
     val result = addition(2,3)
     println("Result is $result")
+
+    val result2 = addition_approach1(2,3)
+    println("Result is $result2")
     printMultipleThings("A", "B", "C")
+    printPersonDetails("Dilip", "abc@gmail.com" , LocalDate.parse("2000-01-01") )
+    printPersonDetails("Dilip")
+    printPersonDetails("Dilip", dob = LocalDate.parse("2000-01-01") )
+    printPersonDetails(dob = LocalDate.parse("2000-01-01") , name = "Dilip", email = "abc@gmail.com")
 }

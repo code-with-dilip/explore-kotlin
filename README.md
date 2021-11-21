@@ -357,6 +357,19 @@ println("Length of the String is ${strLength(name)}")
 
 ## Functions
 
+### Top Level Functions
+- These functions belong to a source file but not part of a class
+  - In java world there is no such thing like this available.
+  - You may notice in projects which might have a class with a bunch of static methods in it
+    - These are commonly called as Utility classes
+  - But in Kotlin, you dont need to do that. You dont need a redundant class to hold static functions
+
+### Top Level Properties
+
+- This is equivalent creating properties that does not belong to any class
+- When you would like to have a variable that needs to be available throughout the project then you can define and use them
+- 
+
 ### Functions in Kotlin
 
 - A function is something in kotlin which can do a unit of work.
@@ -1425,7 +1438,8 @@ var property = "Value"
 #### Handling Default values using @JvmOverloads
 
 - Java does not have the **default** value concept
-- If you would like to have the java code compile for a kotlin function then we need to use **@JvmOverloads** annotation  
+- If you would like to have the java code compile for a kotlin function then we need to use **@JvmOverloads** annotation
+  - This takes care of generating different overloaded versions of these functions
 
 ```kotlin
 @JvmOverloads
