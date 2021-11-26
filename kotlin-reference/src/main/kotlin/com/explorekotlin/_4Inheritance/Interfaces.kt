@@ -51,7 +51,6 @@ data class Employee1(val id: Int, val name: String) {
 }
 
 interface A {
-
     fun doSomething(){
         println("Do Something in A")
     }
