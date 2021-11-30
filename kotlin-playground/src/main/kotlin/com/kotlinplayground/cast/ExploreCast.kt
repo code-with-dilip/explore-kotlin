@@ -2,23 +2,24 @@ package com.kotlinplayground.cast
 
 import com.kotlinplayground.classes.Course
 
-fun checkType(type: Any){
+fun checkType(type: Any) {
 
-    when(type){
+    when (type) {
         is Course -> {
-            println("The type is Course ")
+            println("The type is Course")
+            //val course = type as Course // This is redundant
             println(type.copy())
         }
-        is String ->{
+        is String -> {
             println("The type is Course ")
             println(type.uppercase())
         }
     }
 }
 
-fun castNumber(any: Any){
+fun castNumber(any: Any) {
 
-    when(any){
+    when (any) {
         any as? Double -> println("Value is Double")
         any as? Int -> println("Value is Int")
     }
@@ -27,9 +28,11 @@ fun castNumber(any: Any){
 
 fun main() {
 
-    val course = Course(1,
+    val course = Course(
+        1,
         "Reactive Programming in Modern Java using Project Reactor",
-        "Dilip")
+        "Dilip"
+    )
 
     checkType(course)
     checkType("Dilip")
