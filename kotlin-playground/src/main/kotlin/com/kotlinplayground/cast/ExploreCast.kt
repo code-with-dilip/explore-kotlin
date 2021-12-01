@@ -40,4 +40,10 @@ fun main() {
     castNumber(1.0)
     castNumber(1)
 
+    //Number Conversions
+    val number : Int = 1
+    val numDouble = number.toDouble()
+    println(numDouble)
+
+
 }
