@@ -7,6 +7,11 @@ fun printHello() : Unit {
     println("Hello!")
 }
 
+
+fun returnNothing() : Nothing {
+    throw RuntimeException("Exception")
+}
+
 fun printName(name: String){
     println("Name is $name")
 }
@@ -56,4 +61,6 @@ fun main() {
     printPersonDetails("Dilip")
     printPersonDetails("Dilip", dob = LocalDate.parse("2000-01-01") )
     printPersonDetails(dob = LocalDate.parse("2000-01-01") , name = "Dilip", email = "abc@gmail.com")
+
+    returnNothing()
 }
