@@ -1,7 +1,5 @@
 package com.kotlinplayground.dataset
 
-import com.kotlinplayground.domain.Course
-import com.kotlinplayground.domain.CourseCategory
 
 const val KAFKA = "Kafka"
 const val ADVERTISING = "Adversting"
@@ -12,6 +10,28 @@ const val JAVA = "java"
 const val REACTIVE_PROGRAMMING = "Reactive Programming"
 const val MULTI_THREADING = "MultiThreading"
 const val INTEGRATION_TESTING = "Integraion Testing"
+
+data class Course(
+    val id: Int,
+    val name: String,
+    val category: CourseCategory,
+    val topicsCovered: List<String>
+)
+
+enum class CourseCategory{
+    DEVELOPEMENT,
+    BUSINESS,
+    DESIGN,
+    MARKETING
+}
+
+data class Instructor(
+    val name: String,
+    val age: Int,
+    val noOfCourses : Int,
+    val coursesTaught : List<Course>
+)
+
 
 fun courseList(): MutableList<Course> {
 

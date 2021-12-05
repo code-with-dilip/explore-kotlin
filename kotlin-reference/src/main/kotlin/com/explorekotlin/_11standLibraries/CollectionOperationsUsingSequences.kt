@@ -1,7 +1,6 @@
 package com.explorekotlin._11standLibraries
 
 import com.kotlinplayground.dataset.courseList
-import com.kotlinplayground.domain.Course
 import com.kotlinplayground.domain.CourseCategory
 import kotlin.time.ExperimentalTime
 import kotlin.time.measureTime

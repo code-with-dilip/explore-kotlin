@@ -2,7 +2,6 @@ package com.explorekotlin._11standLibraries
 
 import com.kotlinplayground.dataset.KAFKA
 import com.kotlinplayground.dataset.courseList
-import com.kotlinplayground.domain.Course
 import com.kotlinplayground.domain.CourseCategory
 
 
@@ -30,7 +29,7 @@ private fun exploreFlatMap(developmentCourses: List<Course>, topic: String): Lis
     val kafkaCourses = developmentCourses
         .flatMap {
             val courseName = it.name
-            it.topisCovered.filter {
+            it.topicsCovered.filter {
                 it == topic
             }.map {
                 courseName
