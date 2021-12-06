@@ -30,7 +30,7 @@ fun main() {
     println("designCourses : $designCourses")
 
     val kafkaCourses = exploreFlatMap(courseList, KAFKA)
-
+    println("kafkaCourses : $kafkaCourses")
 }
 
 private fun exploreFlatMap(developmentCourses: List<Course>, topic: String): List<String> {
