@@ -1,4 +1,4 @@
-package com.explorekotlin._11standLibraries
+package com.kotlinplayground.collections
 
 import com.kotlinplayground.dataset.Course
 import com.kotlinplayground.dataset.CourseCategory
@@ -8,21 +8,28 @@ import com.kotlinplayground.dataset.courseList
 
 fun main() {
 
+    val devPredicate = { course: Course -> course.category == CourseCategory.DEVELOPEMENT }
+    val desPredicate = { course: Course -> course.category == CourseCategory.DESIGN }
+
     val courseList = courseList()
-    val developmentCourses = filterCourses(courseList, CourseCategory.DEVELOPEMENT)
-    println("developmentCourses :  $developmentCourses")
+    val developmentCourses = courseList.filter {
+        //devPredicate
+        devPredicate.invoke(it)
 
-    val businessCourses = filterCourses(courseList, CourseCategory.BUSINESS)
-    println("businessCourses : $businessCourses")
+    }
+    println("developmentCourses : $developmentCourses")
 
-    val developmentCourseNames = developmentCourses
-        .map { it.name }
-    println("developmentCourseNames :  $developmentCourseNames")
+    val designCourses = courseList.filter {
+        //devPredicate
+        desPredicate.invoke(it)
 
-    val kafkaCourses = exploreFlatMap(developmentCourses, KAFKA)
-    println("kafkaCourses : $kafkaCourses")
+    }.map {
+            //it.name
+        "${it.name} -  ${it.category}"
+        }
+    println("designCourses : $designCourses")
 
-
+    val kafkaCourses = exploreFlatMap(courseList, KAFKA)
 
 }
 
