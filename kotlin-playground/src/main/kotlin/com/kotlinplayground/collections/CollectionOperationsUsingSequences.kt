@@ -8,6 +8,22 @@ import kotlin.time.measureTime
 
 fun main() {
 
+
+    val namesList = listOf("alex", "ben", "chloe")
+        .filter { it.length >= 4 } // ["alex","chloe"]
+        .map { it.uppercase() } // ["ALEX","CHLOE"]
+
+    println("namesList : $namesList")
+
+    val namesListUsingSequence = listOf("alex", "ben", "chloe")
+        .asSequence()
+        .filter { it.length >= 4 } // ["alex","chloe"]
+        .map { it.uppercase() } // ["ALEX","CHLOE"]
+        .toList()
+
+    println("namesListUsingSequence : $namesListUsingSequence")
+
+
     val developmentCourses = filterCourses(courseList(), CourseCategory.DEVELOPEMENT)
     println("developmentCourses : $developmentCourses and devcourses size : ${developmentCourses.size}")
     lazyEvaluation()
