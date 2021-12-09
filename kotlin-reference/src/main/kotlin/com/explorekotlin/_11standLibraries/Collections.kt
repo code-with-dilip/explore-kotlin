@@ -33,7 +33,6 @@ fun main() {
 
     collections_nullability()
 
-
 }
 
 private fun collections_nullability() {
