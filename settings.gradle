@@ -1,2 +1,4 @@
 rootProject.name = 'explore-kotlin'
+include 'kotlin-playground'
+include 'kotlin-reference'
 
