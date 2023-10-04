@@ -1,4 +1,7 @@
-package com.explorekotlin._4Inheritance
+package com.explorekotlin.generics
+
+import com.explorekotlin._4Inheritance.Customer
+import com.explorekotlin._4Inheritance.Employee1
 
 
 interface Repository<T>{
@@ -21,7 +24,7 @@ class GenericRepositoryImpl<T> : Repository<T> {
      fun <R> getAll() : List<R>
  }
 
-class RepoImpl : Repo{
+class RepoImpl : Repo {
     override fun <T> getById(): T {
         TODO("Not yet implemented")
     }
