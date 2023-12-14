@@ -18,3 +18,14 @@ val objectMapper: ObjectMapper = ObjectMapper().registerModule(
 fun <T> parseToObj(json: String , clazz : Class<T>): T {
     return objectMapper.readValue(json, clazz)
 }
+
+
+//fun <T> List<T>.filter(predicate: (T) -> Boolean): List<T>
+//
+//val authors = listOf("Dmitry", "Svetlana")
+
+
+
+//fun <T> map(obj : T, op : ) R {
+//
+//}

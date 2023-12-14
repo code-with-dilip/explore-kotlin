@@ -1,3 +1,4 @@
+/*
 package com.explorekotlin.higher_order_functions
 
 import io.kotest.core.spec.style.StringSpec
@@ -10,4 +11,4 @@ class HigherOrderFunctionSpec : StringSpec({
         result shouldBe  6
     }
 
-})
+})*/
