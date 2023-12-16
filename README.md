@@ -965,7 +965,8 @@ class AB : A, B {
 
 ### Generics Type Parameters
 - Generics allow you to define types that have **type parameters**.
-  - When an instance of such a type is created, type parameters are substituted with specific types called type arguments.
+  - **type arguments**:
+    - When an instance of such a type is created, type parameters are substituted with specific types called **type arguments**.
 - if you have a variable of type List, it’s useful to know what kind of things are stored in that list. 
 - The type parameter lets you specify exactly that—instead of “This variable holds a list,” you can say something like “This variable holds a list of strings.”
   - Kotlin’s syntax for saying “a list of strings” looks the same as in Java: List<String>.
