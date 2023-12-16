@@ -1,5 +1,13 @@
 # explore-kotlin
 
+
+- [Generics](#generics)
+  - [Generics type parameters](#generics-type-parameters)
+  - [Generic functions and properties](#generic-functions-and-properties)
+    - [Generic-function-example-implementation-](#generic-function-example-implementation-)
+
+
+
 ## Adding kotest to the Project
 
 ```
@@ -952,7 +960,59 @@ class AB : A, B {
 - You can have subclasses that implements multiple **Interface** but not the abstract class
 
 
-### Generics in Kotlin
+## Generics
+
+### Generics Type Parameters
+- Generics allow you to define types that have **type parameters**.
+  - When an instance of such a type is created, type parameters are substituted with specific types called type arguments.
+- if you have a variable of type List, it’s useful to know what kind of things are stored in that list. 
+- The type parameter lets you specify exactly that—instead of “This variable holds a list,” you can say something like “This variable holds a list of strings.”
+  - Kotlin’s syntax for saying “a list of strings” looks the same as in Java: List<String>.
+
+- In this case, the type of the elements **String** is inferred automatically by the compiler.
+```kotlin
+    val authors = listOf("Dmitry", "Svetlana")
+```
+
+### Generic functions and properties
+
+- The below function takes in the higher order function as an input and generates the output based on the lambda passed in.
+
+```kotlin
+fun <T, R> List<T>.customMap(transform: (T) -> R): List<R>
+```
+- <T, R> -> Type parameter declaration
+- List<T> -> Type parameter used in receiver
+- List<R> -> Type parameter used in return type. 
+
+#### Generic Function Example Implementation 
+
+```kotlin
+
+internal fun <T> Iterable<T>.collectionSizeOrDefault(default: Int): Int =
+  if (this is Collection<*>) this.size else default
+
+fun <T, R> List<T>.customMap(transform: (T) -> R): List<R> {
+    val resultCollection = ArrayList<R>(collectionSizeOrDefault(10))
+    for (item in this)
+        resultCollection.add(transform(item))
+
+    return resultCollection
+}
+```
+
+- this -> The **this** reference gives you access to the actual collection that we are working on.
+
+
+#### Generic Extension property 
+
+- In the below example we created a generic extension property using **val**
+
+```kotlin
+val <T> List<T>.penultimate : T
+get() = this[size-2]
+```
+
 
 - If you would like to create generic classes then you would use generic Types
     - In this case, we are declaring an interface with a  generic Type **T** 
@@ -1620,6 +1680,7 @@ private fun lazyEvaluation() {
     println(output)
 }
 ```
+
 
 
 

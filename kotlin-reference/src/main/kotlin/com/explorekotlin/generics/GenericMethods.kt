@@ -26,6 +26,7 @@ fun <T> parseToObj(json: String , clazz : Class<T>): T {
 
 
 
-//fun <T> map(obj : T, op : ) R {
+//fun <T, R> map1(obj : T, op : (T) -> R  ) : R {
 //
+//    //return op()
 //}

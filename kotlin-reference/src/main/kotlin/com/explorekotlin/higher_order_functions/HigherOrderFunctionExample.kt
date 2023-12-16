@@ -1,5 +1,7 @@
 package com.explorekotlin.higher_order_functions
 
+import java.util.*
+
 fun String.filter(predicate : (Char) -> Boolean): String {
     val sb = StringBuilder()
     println("String  is $this");
@@ -40,6 +42,6 @@ fun main() {
 
 
     println("Status is ${"inactive".contains("active")}")
-    println("Status is ${"LES_INACTIVE".toLowerCase().contains("active")}")
+    println("Status is ${"LES_INACTIVE".lowercase(Locale.getDefault()).contains("active")}")
 
 }
