@@ -5,6 +5,7 @@
   - [Generics type parameters](#generics-type-parameters)
   - [Generic functions and properties](#generic-functions-and-properties)
     - [Generic-function-example-implementation-](#generic-function-example-implementation-)
+    - [Generic property](#generic-property-)
 
 
 
@@ -1004,7 +1005,7 @@ fun <T, R> List<T>.customMap(transform: (T) -> R): List<R> {
 - this -> The **this** reference gives you access to the actual collection that we are working on.
 
 
-#### Generic Extension property 
+#### Generic property 
 
 - In the below example we created a generic extension property using **val**
 
@@ -1017,6 +1018,7 @@ get() = this[size-2]
 - If you would like to create generic classes then you would use generic Types
     - In this case, we are declaring an interface with a  generic Type **T** 
   
+### Generic Classes
 ```kotlin
 interface Repository<T>{
     fun getById(id: Int) : T
