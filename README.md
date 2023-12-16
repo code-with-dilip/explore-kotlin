@@ -6,6 +6,7 @@
   - [Generic functions and properties](#generic-functions-and-properties)
     - [Generic-function-example-implementation-](#generic-function-example-implementation-)
     - [Generic property](#generic-property-)
+  - [Generic classes](#generic-classes)
 
 
 
@@ -1015,11 +1016,12 @@ val <T> List<T>.penultimate : T
 get() = this[size-2]
 ```
 
-
-- If you would like to create generic classes then you would use generic Types
-    - In this case, we are declaring an interface with a  generic Type **T** 
   
 ### Generic Classes
+
+- If you would like to create generic classes then you would use generic Types
+  - In this case, we are declaring an interface with a  generic Type **T**
+
 ```kotlin
 interface Repository<T>{
     fun getById(id: Int) : T

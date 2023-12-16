@@ -9,7 +9,7 @@ interface Repository<T> {
     fun getAll(): List<T>
 }
 
-class GenericRepositoryImpl<T> : Repository<T> {
+open class GenericRepositoryImpl<T> : Repository<T> {
     override fun getById(id: Int): T {
         TODO("Not yet implemented")
     }
@@ -18,6 +18,7 @@ class GenericRepositoryImpl<T> : Repository<T> {
         TODO("Not yet implemented")
     }
 }
+
 
 interface Repo {
     fun <T> getById(): T
