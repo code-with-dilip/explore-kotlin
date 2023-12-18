@@ -1,7 +1,5 @@
 package com.explorekotlin.generics
 
-import com.explorekotlin._4Inheritance.Customer
-import com.explorekotlin._4Inheritance.Employee1
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule
 import com.fasterxml.jackson.module.kotlin.KotlinFeature
@@ -43,14 +41,37 @@ fun <T, R> String.convertToCharList(): List<String> {
 
 }
 
+fun <T : Number> List<T>.sumAll(): Int {
+    var count = 0;
+    for (item in this) {
+        count += item.toInt()
+    }
+    return count
+}
+
+fun <T : Comparable<T>> max(first: T, second: T): T {
+    return if (first > second) first else second
+}
+
 fun main() {
 
     val authors = listOf("Dmitry", "Svetlana")
-    val customAuthors = authors
+    val authorNameSizeList = authors
         .customMap { it.length }
+    println("authorNameSizeList : $authorNameSizeList")
 
     val numbers = listOf(1, 2,3,4)
     val result = numbers.penultimate
     println("result : $result")
+
+    val sumResult = numbers.sumAll()
+    println("sumResult : $sumResult")
+
+    val numbersDoubleList = listOf(1.0, 2.0, 3.0, 4.0)
+    val sumAllDouble = numbersDoubleList.sumAll()
+    println("sumAllDouble : $sumAllDouble")
+
+    val max = max("Dilip", "Yaash")
+    println("max : $max")
 
 }
