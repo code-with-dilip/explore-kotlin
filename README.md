@@ -1,14 +1,72 @@
 # explore-kotlin
 
-
+- [Comparable vs Comparator](#comparable-vs-comparator)
+  - [Comparable](#comparable)
+  - [Comparator](#comparator)
 - [Generics](#generics)
   - [Generics type parameters](#generics-type-parameters)
   - [Generic functions and properties](#generic-functions-and-properties)
     - [Generic-function-example-implementation-](#generic-function-example-implementation-)
     - [Generic property](#generic-property-)
   - [Generic classes](#generic-classes)
+    - [Generic type parameter constraints](#generic-type-parameter-constraints)
 
 
+## Comparable vs Comparator
+- These two interfaces are primarily used for comparison of objects.
+- One of the common use case is for **sorting**.
+
+### Comparable
+- This is an interface we add it to the actual data class itself.
+- It has just one method named **compareTo** which we will implement object comparison.
+
+```kotlin
+data class FamilyMember(
+    val firstName: String,
+    val lastName: String,
+    val age: Int
+) : Comparable<FamilyMember> {
+    override fun compareTo(other: FamilyMember): Int {
+        val fName = firstName.compareTo(other.firstName)
+        val lName = lastName.compareTo(other.lastName)
+        return fName.compareTo(lName)
+    }
+
+}
+```
+### Comparator
+- This is a functional interface which accepts two objects for comparison.
+- The implementation logic can be kept independent of the actual class.
+
+#### Implementing Comparator using Lambda 
+```kotlin
+var comparatorByName =
+  { o1: FamilyMember, o2: FamilyMember ->
+    val fName = o1.firstName.compareTo(o2.firstName)
+    val lName = o1.lastName.compareTo(o2.lastName)
+    fName.compareTo(lName)
+  }
+
+// invoking the comparator
+val belchers = mutableListOf(
+  FamilyMember("Bob", "Belcher", 45),
+  FamilyMember("Linda", "Belcher", 44),
+  FamilyMember("Tina", "Belcher", 13),
+  FamilyMember("Gene", "Belcher", 11),
+  FamilyMember("Louise", "Belcher", 9)
+)
+belchers.sortWith(comparatorByName)
+
+```
+
+#### Implementing Comparator using comparing and thenComparing
+
+```kotlin
+    belchers.sortWith(
+        Comparator.comparing(FamilyMember::firstName).thenComparing(FamilyMember::lastName)
+    )
+
+```
 
 ## Adding kotest to the Project
 
@@ -1006,7 +1064,6 @@ fun <T, R> List<T>.customMap(transform: (T) -> R): List<R> {
 
 - this -> The **this** reference gives you access to the actual collection that we are working on.
 
-
 #### Generic property 
 
 - In the below example we created a generic extension property using **val**
@@ -1042,27 +1099,32 @@ class GenericRepositoryImpl<T> : Repository<T> {
     }
 }
 ```
+#### Generic Type parameter constraints
+- Type parameter constraints let you restrict the types that can be used as type arguments for a class or function.
+- When you specify a type as an upper bound constraint for a type parameter of a generic type, the corresponding type arguments in specific instantiations of the generic type must be either the specified type or its subtypes
 
-#### Generic Types at the method level
-
-- This approach will only makes sense if we have different types returned by different functions
-
+- In this example, we have specified an Upperbound **Number** which just accepts any type that can be cast as a Number.
+  - Examples are Integer, Double.
+  - If we try to pass **String** to this function then it will cause compilation error.
+  
 ```kotlin
-interface Repo {
-    fun <T> getById() : T
-    fun <R> getAll() : List<R>
-}
-
-class RepoImpl : Repo{
-    override fun <T> getById(): T {
-        TODO("Not yet implemented")
+fun <T : Number> List<T>.sumAll() : Int {
+    var count = 0;
+    for (item in this){
+        count += item.toInt()
     }
-
-    override fun <R> getAll(): List<R> {
-        TODO("Not yet implemented")
-    }
+    return count
 }
 ```
+- Generic function that accepts **Comparable**
+
+```kotlin
+fun <T : Comparable<T>> max(first: T, second: T): T {
+    return if (first > second) first else second
+}
+```
+
+
 ## Working with nulls
 
 - One of the important concept thats used in many programming languages is the support null references

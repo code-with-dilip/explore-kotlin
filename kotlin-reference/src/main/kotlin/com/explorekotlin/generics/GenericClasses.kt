@@ -29,6 +29,18 @@ open class GenericRepositoryImpl<T> : Repository<T> {
 }
 
 
+fun <T : Number> List<T>.sumAll(): Int {
+    var count = 0;
+    for (item in this) {
+        count += item.toInt()
+    }
+    return count
+}
+
+fun <T : Comparable<T>> max(first: T, second: T): T {
+    return if (first > second) first else second
+}
+
 fun main() {
 
     val customerRepo = GenericRepositoryImpl<Customer>()
@@ -39,9 +51,20 @@ fun main() {
     val customAuthors = authors
         .customMap { it.length }
 
-    val numbers = listOf(1, 2,3,4)
+    val numbers = listOf(1, 2, 3, 4)
     val result = numbers.penultimate
     println("result : $result")
+
+    val sumResult = numbers.sumAll()
+    println("sumResult : $sumResult")
+
+    val numbersDoubleList = listOf(1.0, 2.0, 3.0, 4.0)
+    val sumAllDouble = numbersDoubleList.sumAll()
+    println("sumAllDouble : $sumAllDouble")
+
+    val max = max("Dilip", "Yaash")
+    println("max : $max")
+
 
 }
 
