@@ -10,6 +10,7 @@
     - [Generic property](#generic-property-)
   - [Generic classes](#generic-classes)
     - [Generic type parameter constraints](#generic-type-parameter-constraints)
+    - [nulls in Generics](#nulls-in-generics)
 
 
 ## Comparable vs Comparator
@@ -1124,6 +1125,30 @@ fun <T : Comparable<T>> max(first: T, second: T): T {
 }
 ```
 
+#### nulls in Generics
+
+- For the below code, by default we can pass nullable type as a Type Argument.
+- In this case, you can still pass null as an argument to the **size()** function.
+```kotlin
+class NullRepository<T> {
+    fun size(s: T) : String{
+        return s.toString()
+    }
+}
+
+val stringRepository = NullRepository<String?>() // This is still allowed as a type argument.
+```
+- To handle this, we can make a small change to it by adding **Any** as a type parameter.  
+  -  This ensures we always pass a non-nullable type as a Type argument.
+```kotlin
+class NullRepository<T : Any> {
+    fun size(s: T) : String{
+        return s.toString()
+    }
+}
+
+val stringRepository = NullRepository<String>()
+```
 
 ## Working with nulls
 

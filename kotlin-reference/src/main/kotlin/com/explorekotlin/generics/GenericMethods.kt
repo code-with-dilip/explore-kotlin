@@ -53,6 +53,14 @@ fun <T : Comparable<T>> max(first: T, second: T): T {
     return if (first > second) first else second
 }
 
+fun <T> customTypeConstraints(first: T)
+    where T : CharSequence, T: Appendable
+{
+    if(first.endsWith("!")){
+        first.append("abc")
+    }
+}
+
 fun main() {
 
     val authors = listOf("Dmitry", "Svetlana")
