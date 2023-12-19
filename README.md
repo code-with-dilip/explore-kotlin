@@ -3,6 +3,12 @@
 - [Comparable vs Comparator](#comparable-vs-comparator)
   - [Comparable](#comparable)
   - [Comparator](#comparator)
+- [Higher Order Functions](#higher-order-functions)
+  - [inline functions](#inline-functions)
+  - [How inlining works](#how-inlining-works)
+  - [Inline Restrictions](#inline-restrictions)
+  
+- 
 - [Generics](#generics)
   - [Generics type parameters](#generics-type-parameters)
   - [Generic functions and properties](#generic-functions-and-properties)
@@ -11,6 +17,9 @@
   - [Generic classes](#generic-classes)
     - [Generic type parameter constraints](#generic-type-parameter-constraints)
     - [nulls in Generics](#nulls-in-generics)
+  - [Generics at runtime: erased and reified type parameters](#generics-at-runtime-erased-and-reified-type-parameters)
+    - [Generics at runtime: type checks and casts](#generics-at-runtime-type-checks-and-casts)
+    - [Star Projection](#star-projection)
 
 
 ## Comparable vs Comparator
@@ -68,6 +77,8 @@ belchers.sortWith(comparatorByName)
     )
 
 ```
+
+
 
 ## Adding kotest to the Project
 
@@ -1020,6 +1031,66 @@ class AB : A, B {
 - Abstract classes are allowed to have state but not the **Interface**
 - You can have subclasses that implements multiple **Interface** but not the abstract class
 
+## Higher Order Functions
+
+### inline Functions
+- In general, lambdas are normally compiled to anonymous classes.
+  - But that means every time you use a lambda expression, an extra class is created; and if the lambda captures some variables, then a new object is created on every invocation
+  - This introduces runtime overhead, causing an implementation that uses a lambda to be less efficient than a function that executes the same code directly.
+- **Inline functions** are present in kotlin to remove the runtime overhead of creating anonymous classes for every lambda invocation.
+  - This causes the code that uses lambda to be less efficient compared to the regular function.
+  - This can be avoided in kotlin by defining the function to be inline.
+
+#### How inlining works
+- When a function is defined with inline modifier,  the function's body is inlined in the spot where the inline function is invoked.
+
+#### Working Example
+
+```kotlin
+
+fun operation(op: () -> Unit) {
+    println("Before Operation")
+    op()
+    println("after Operation")
+}
+
+inline fun inlineOperation(op: () -> Unit) {
+  op()
+  println("Before inlineOperation")
+    println("after inlineOperation")
+}
+
+
+fun main() {
+    operation { println("I am the operation") }
+    inlineOperation { println("I am the inoperation") }
+}
+```
+
+- In the above **inlineOperation** call actually the lamda thats passed in actually embeds the code in to the **main**
+  function
+  - You can check the **bytecode** -> Tools -> Kotlin -> Show Kotlin ByteCode
+
+### Inline Restrictions
+
+- Inline won't work on functions where the function argument is stored somewhere else.
+- Below is an example where the compiler complaints about the usage of **inline**.
+
+```kotlin
+inline fun illegalInline(op: () -> Unit) {
+    println("Before inlineOperation")
+    val op1 = op
+    op()
+    //throw Exception("I am the greatest exception")
+    println("after inlineOperation")
+}
+```
+
+### How does this alter the method Stack Trace
+
+- It does display a line that does not even exist because inline function inject the code in to the calling function
+  actually
+  - But when the exception is printed in the console it does give you the option to navigate in to the lamda body
 
 ## Generics
 
@@ -1149,6 +1220,55 @@ class NullRepository<T : Any> {
 
 val stringRepository = NullRepository<String>()
 ```
+
+## Generics at runtime: erased and reified type parameters
+- In general, generics are implemented in kotlin using **type erasure**.
+  - This means at runtime, the type arguments are not preserved.
+
+### Generics at runtime: type checks and casts
+- Just like in Java the type that an instance of a generic class holds are not preserved at runtime.
+  - Example, if we create a List<String>, the type the collection holds won't be available at runtime.
+    - We can still check the individual element inside the collection and identify the type.
+- Even though the compiler sees two distinct types for the lists, at execution time they look exactly the same.
+  - But the compiler knows the type arguments and ensures that only elements of the correct type are stored in each list.
+
+```kotlin
+val stringList = listOf("abc", "def")
+val intList = listOf(1, 2)
+
+
+fun checkType() {
+
+  if (stringList is List<Int>){
+
+  }
+
+}
+```
+- The above code won't compile because of type erasure.
+- Note that erasing generic type information has its benefits: 
+  - The overall amount of memory used by your application is smaller, because less type information needs to be saved in memory.
+
+### Star Projection
+- We can solve the above problem by using **star projection**.
+  - This is equivalent to List<?> in java.
+- In the below code, using **as?** will apply cast successfully irrespective of the type passed is a **List<String>** or **List<Int>**.
+  - But the below code fails, when trying to perform a cast on a **String** to an **Int**.
+    ```kotlin
+      Exception in thread "main" java.lang.ClassCastException
+      ```
+```kotlin
+
+fun checkType(input : Collection<*>) {
+
+  val list = input as? List<Int> ?:
+  throw IllegalArgumentException("Exception")
+
+  println("Sum is ${list.sum()}")
+
+}
+```
+
 
 ## Working with nulls
 
@@ -1879,35 +1999,3 @@ println(annotation)
 
 - inline is a keyword which takes care of inlining the function in to the calling code itself
 
-### Working Example
-
-```kotlin
-
-fun operation(op: () -> Unit) {
-    println("Before Operation")
-    op()
-    println("after Operation")
-}
-
-inline fun inlineOperation(op: () -> Unit) {
-    println("Before inlineOperation")
-    op()
-    println("after inlineOperation")
-}
-
-
-fun main() {
-    operation { println("I am the operation") }
-    inlineOperation { println("I am the inoperation") }
-}
-```
-
-- In the above **inlineOperation** call actually the lamda thats passed in actually embeds the code in to the **main**
-  function
-    - You can check the **bytecode** -> Tools -> Kotlin -> Show Kotlin ByteCode
-
-### How does this alter the method Stack Trace
-
-- It does display a line that does not even exist because inline function inject the code in to the calling function
-  actually
-    - But when the exception is printed in the console it does give you the option to navigate in to the lamda body

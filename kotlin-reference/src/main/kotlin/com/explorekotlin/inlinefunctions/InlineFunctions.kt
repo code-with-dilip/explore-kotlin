@@ -21,6 +21,14 @@ inline fun inlineOperation(op: () -> Unit) {
     println("after inlineOperation")
 }
 
+inline fun illegalInline(op: () -> Unit) {
+    println("Before inlineOperation")
+    val op1 = op
+    op()
+    //throw Exception("I am the greatest exception")
+    println("after inlineOperation")
+}
+
 
 fun main() {
     operation { println("I am the operation") }
