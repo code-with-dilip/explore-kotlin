@@ -7,6 +7,10 @@
   - [inline functions](#inline-functions)
   - [How inlining works](#how-inlining-works)
   - [Inline Restrictions](#inline-restrictions)
+    - [How does this alter the method Stack Trace](#how-does-this-alter-the-method-stack-trace)
+    - [inlining collection operations](#inlining-collection-operations)
+    - [Deciding when to declare functions as inline](#deciding-when-to-declare-functions-as-inline)
+    - [Using inlined lambdas for resource management](#using-inlined-lambdas-for-resource-management)
   
 - 
 - [Generics](#generics)
@@ -1037,12 +1041,14 @@ class AB : A, B {
 - In general, lambdas are normally compiled to anonymous classes.
   - But that means every time you use a lambda expression, an extra class is created; and if the lambda captures some variables, then a new object is created on every invocation
   - This introduces runtime overhead, causing an implementation that uses a lambda to be less efficient than a function that executes the same code directly.
-- **Inline functions** are present in kotlin to remove the runtime overhead of creating anonymous classes for every lambda invocation.
   - This causes the code that uses lambda to be less efficient compared to the regular function.
+- **Inline functions** are present in kotlin to remove the runtime overhead of creating anonymous classes for every lambda invocation.
   - This can be avoided in kotlin by defining the function to be inline.
+  - 
 
 #### How inlining works
 - When a function is defined with inline modifier,  the function's body is inlined in the spot where the inline function is invoked.
+- When the function is inlined, the body of the lambda expression that’s passed as an argument is substituted directly into the resulting code.
 
 #### Working Example
 
@@ -1086,11 +1092,39 @@ inline fun illegalInline(op: () -> Unit) {
 }
 ```
 
-### How does this alter the method Stack Trace
+- Multiple lambdas as parameters.
+
+```kotlin
+inline fun multipleLambdas(op: () -> Unit, noinline op1: () -> Unit) {
+    println("Before inlineOperation")
+    op()
+    //throw Exception("I am the greatest exception")
+    println("after inlineOperation")
+}
+```
+
+#### How does this alter the method Stack Trace
 
 - It does display a line that does not even exist because inline function inject the code in to the calling function
   actually
   - But when the exception is printed in the console it does give you the option to navigate in to the lamda body
+
+### Inlining collection operations
+
+- Most of the collection operations accept lambdas and those are inline functions.
+  - So by default the lambda calls does not create extra anonymous classes or objects.
+- Collections by default create an intermediate collection to store the result.
+  - So if the collection size is large then using **asSequence()** is a better option.
+  - But sequence() is not inline, so anonymous classes or instances will be created.
+  - So this is the tradeoff and use it according to the usecase.
+
+### Deciding when to declare functions as inline
+
+- The benefit of inline only comes into play if the function accepts lambdas as parameters.
+
+### Using inlined lambdas for resource management
+- One common pattern where lambdas can remove duplicate code is resource management: acquiring a resource before an operation and releasing it afterward.
+- In kotlin we have the **use** function is an extension function called on a closable resource.
 
 ## Generics
 

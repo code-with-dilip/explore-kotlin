@@ -23,7 +23,14 @@ inline fun inlineOperation(op: () -> Unit) {
 
 inline fun illegalInline(op: () -> Unit) {
     println("Before inlineOperation")
-    val op1 = op
+   // val op1 = op
+    op()
+    //throw Exception("I am the greatest exception")
+    println("after inlineOperation")
+}
+
+inline fun multipleLambdas(op: () -> Unit, noinline op1: () -> Unit) {
+    println("Before inlineOperation")
     op()
     //throw Exception("I am the greatest exception")
     println("after inlineOperation")
