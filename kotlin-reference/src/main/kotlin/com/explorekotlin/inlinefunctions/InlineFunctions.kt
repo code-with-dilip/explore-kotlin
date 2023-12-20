@@ -1,10 +1,21 @@
 package com.explorekotlin.inlinefunctions
 
+import java.io.BufferedReader
+import java.io.FileReader
+
 
 fun operation(op: () -> Unit) {
     println("Before Operation")
     op()
     println("after Operation")
+}
+
+fun readLines(path: String) {
+    BufferedReader(FileReader(path)).use { br ->
+        {
+            br.readLine()
+        }
+    }
 }
 
 fun twoOperations(op: () -> Unit, op1: () -> Unit) {
@@ -23,7 +34,7 @@ inline fun inlineOperation(op: () -> Unit) {
 
 inline fun illegalInline(op: () -> Unit) {
     println("Before inlineOperation")
-   // val op1 = op
+    // val op1 = op
     op()
     //throw Exception("I am the greatest exception")
     println("after inlineOperation")

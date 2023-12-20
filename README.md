@@ -1126,6 +1126,18 @@ inline fun multipleLambdas(op: () -> Unit, noinline op1: () -> Unit) {
 - One common pattern where lambdas can remove duplicate code is resource management: acquiring a resource before an operation and releasing it afterward.
 - In kotlin we have the **use** function is an extension function called on a closable resource.
 
+```kotlin
+
+fun readLines(path: String) {
+    BufferedReader(FileReader(path)).use { br ->
+        {
+            br.readLine()
+        }
+    }
+}
+```
+- Above is the sample implementation of the same.
+
 ## Generics
 
 ### Generics Type Parameters
@@ -1303,7 +1315,38 @@ fun checkType(input : Collection<*>) {
 }
 ```
 
+### Declaring functions with reified type parameters
 
+- By default, the type of type arguments in generic classes or generic functions are not erased.
+- The below code wont compile.
+```kotlin
+fun <T> isA(value : Any ) = value is T
+```
+- But the above code can be fixed by adding **inline** and **reified** keyword.
+
+```kotlin
+inline fun <reified T> isA(value : Any ) = value is T
+```
+
+#### Why reified works with inline functions?
+
+- The compiler inserts the bytecode implementing the inline function into every place where it’s called. Every time you call the function with a reified type parameter, the compiler knows the exact type used as the type argument in that particular call. 
+  - Therefore, the compiler can generate the bytecode that references the specific class used as a type argument.
+
+- Here is a sample implementation of using reified on the collection operation.
+```kotlin
+
+inline fun <reified T>  List<*>.filterInstance() : List<T> {
+    val returnList = ArrayList<T>()
+    for(item in this){
+        if(item is T){
+            returnList.add(item)
+        }
+    }
+    return returnList
+}
+
+```
 ## Working with nulls
 
 - One of the important concept thats used in many programming languages is the support null references
