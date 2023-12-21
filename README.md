@@ -24,6 +24,9 @@
   - [Generics at runtime: erased and reified type parameters](#generics-at-runtime-erased-and-reified-type-parameters)
     - [Generics at runtime: type checks and casts](#generics-at-runtime-type-checks-and-casts)
     - [Star Projection](#star-projection)
+    - [Declaring functions with reified type parameters](#declaring-functions-with-reified-type-parameters)
+    - [Why reified works with inline functions?](#why-reified-works-with-inline-functions)
+    - [Replacing class references with reified type parameters](#replacing-class-references-with-reified-type-parameters)
 
 
 ## Comparable vs Comparator
@@ -1346,7 +1349,40 @@ inline fun <reified T>  List<*>.filterInstance() : List<T> {
     return returnList
 }
 
+// When using Star Projection in the library function, you need to pass the type argument to the invoking function. 
+val output  = inputList.filterInstance<String>()
+
 ```
+
+### Replacing class references with reified type parameters
+- Here is an example code without the reified type parameters.
+
+```kotlin
+class Service
+val serviceImpl = ServiceLoader.load(Service::class.java)
+```
+
+- But we can create a generic function with the use of reified type parameters.
+
+```kotlin
+inline fun <reified T> loadService(classs : T) : ServiceLoader<T>{
+    return ServiceLoader.load(T::class.java)
+}
+```
+
+### reified Restrictions
+
+- More specifically, here’s how you can use a reified type parameter:
+  - In type checks and casts (is, !is, as, as?)
+  - To use the Kotlin reflection APIs, as we’ll discuss in chapter 10 (::class)
+  - To get the corresponding java.lang.Class (::class.java)
+  - As a type argument to call other functions
+- You can’t do the following:
+  - Create new instances of the class specified as a type parameter
+  - Call methods on the companion object of the type parameter class
+  - Use a non-reified type parameter as a type argument when calling a function with a reified type parameter
+  - Mark type parameters of classes, properties, or non-inline functions as reified
+
 ## Working with nulls
 
 - One of the important concept thats used in many programming languages is the support null references
