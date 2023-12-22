@@ -3,6 +3,8 @@
 - [Comparable vs Comparator](#comparable-vs-comparator)
   - [Comparable](#comparable)
   - [Comparator](#comparator)
+    - [Implementing Comparator using comparing and thenComparing](#implementing-comparator-using-comparing-and-thencomparing)
+- [Lambda Expressions](#lambda-expression)
 - [Higher Order Functions](#higher-order-functions)
   - [inline functions](#inline-functions)
   - [How inlining works](#how-inlining-works)
@@ -11,8 +13,6 @@
     - [inlining collection operations](#inlining-collection-operations)
     - [Deciding when to declare functions as inline](#deciding-when-to-declare-functions-as-inline)
     - [Using inlined lambdas for resource management](#using-inlined-lambdas-for-resource-management)
-  
-- 
 - [Generics](#generics)
   - [Generics type parameters](#generics-type-parameters)
   - [Generic functions and properties](#generic-functions-and-properties)
@@ -84,8 +84,6 @@ belchers.sortWith(comparatorByName)
     )
 
 ```
-
-
 
 ## Adding kotest to the Project
 
@@ -1699,7 +1697,6 @@ unaryOperation(1) { x -> x * x }
 
 ```kotlin
 fun anonymousFunc(){
-
     unaryOperation(3, fun(x : Int) : Int {
         return x * x
     })
